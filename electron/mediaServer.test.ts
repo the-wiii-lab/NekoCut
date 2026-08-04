@@ -11,7 +11,7 @@ describe("media server path policy", () => {
 	let appPath: string;
 
 	beforeEach(async () => {
-		tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "recordly-media-server-"));
+		tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "nekocut-media-server-"));
 		appDataPath = path.join(tempRoot, "AppData");
 		userDataPath = path.join(tempRoot, "UserData");
 		tempPath = path.join(tempRoot, "Temp");

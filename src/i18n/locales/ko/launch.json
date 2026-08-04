@@ -50,8 +50,8 @@
 			"checkingTitle": "업데이트를 확인하는 중...",
 			"downloadingTitle": "업데이트를 다운로드하는 중...",
 			"errorTitle": "업데이트 확인에 실패했습니다. 클릭하여 다시 시도하세요.",
-			"upToDateTitle": "Recordly {{version}}은(는) 최신 버전입니다.",
-			"availableTitle": "Recordly {{version}}을(를) 사용할 수 있습니다.",
+			"upToDateTitle": "NekoCut {{version}}은(는) 최신 버전입니다.",
+			"availableTitle": "NekoCut {{version}}을(를) 사용할 수 있습니다.",
 			"availableGenericTitle": "업데이트를 사용할 수 있습니다."
 		}
 	},
@@ -67,10 +67,10 @@
 		"share": "공유"
 	},
 	"permissions": {
-		"screenRecordingNeeded": "녹화를 시작하기 전에 Recordly에 화면 녹화 권한이 필요합니다. 시스템 설정을 열었습니다. 권한을 허용한 뒤 Recordly를 종료하고 다시 실행해 주세요.",
-		"screenRecordingMissing": "화면 녹화 권한이 아직 없습니다. 시스템 설정을 다시 열었습니다. 권한을 허용한 뒤 Recordly를 종료하고 다시 실행한 후 녹화를 시작해 주세요.",
-		"accessibilityNeeded": "커서 추적을 위해 Recordly에 손쉬운 사용 권한도 필요합니다. 시스템 설정을 열었습니다. 권한을 허용한 뒤 Recordly를 종료하고 다시 실행해 주세요.",
-		"accessibilityMissing": "손쉬운 사용 권한이 아직 없습니다. 시스템 설정을 다시 열었습니다. 권한을 허용한 뒤 Recordly를 종료하고 다시 실행한 후 녹화를 시작해 주세요.",
+		"screenRecordingNeeded": "녹화를 시작하기 전에 NekoCut에 화면 녹화 권한이 필요합니다. 시스템 설정을 열었습니다. 권한을 허용한 뒤 NekoCut를 종료하고 다시 실행해 주세요.",
+		"screenRecordingMissing": "화면 녹화 권한이 아직 없습니다. 시스템 설정을 다시 열었습니다. 권한을 허용한 뒤 NekoCut를 종료하고 다시 실행한 후 녹화를 시작해 주세요.",
+		"accessibilityNeeded": "커서 추적을 위해 NekoCut에 손쉬운 사용 권한도 필요합니다. 시스템 설정을 열었습니다. 권한을 허용한 뒤 NekoCut를 종료하고 다시 실행해 주세요.",
+		"accessibilityMissing": "손쉬운 사용 권한이 아직 없습니다. 시스템 설정을 다시 열었습니다. 권한을 허용한 뒤 NekoCut를 종료하고 다시 실행한 후 녹화를 시작해 주세요.",
 		"selectSource": "녹화할 소스를 선택해 주세요",
 		"systemAudioUnavailable": "이 소스에서는 시스템 오디오를 사용할 수 없습니다. 시스템 오디오 없이 녹화를 계속합니다.",
 		"microphoneDenied": "마이크 접근이 거부되었습니다. 마이크 오디오 없이 녹화를 계속합니다.",

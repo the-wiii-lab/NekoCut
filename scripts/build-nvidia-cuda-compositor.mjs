@@ -22,8 +22,8 @@ const bundledDir = path.join(
 	"bin",
 	process.arch === "arm64" ? "win32-arm64" : "win32-x64",
 );
-const bundledExePath = path.join(bundledDir, "recordly-nvidia-cuda-compositor.exe");
-const helperId = "recordly-nvidia-cuda-compositor";
+const bundledExePath = path.join(bundledDir, "nekocut-nvidia-cuda-compositor.exe");
+const helperId = "nekocut-nvidia-cuda-compositor";
 const generatorArch = process.arch === "arm64" ? "ARM64" : "x64";
 const videoCodecSdkRoot =
 	process.env.RECORDLY_NVIDIA_VIDEO_CODEC_SDK_ROOT?.trim() ||
@@ -46,7 +46,7 @@ function fallbackToBundledHelperOrExit(reason) {
 			helperId,
 			sourceDir,
 			binaryPath: bundledExePath,
-			binaryName: "recordly-nvidia-cuda-compositor.exe",
+			binaryName: "nekocut-nvidia-cuda-compositor.exe",
 		});
 		if (!verification.ok) {
 			console.warn(
@@ -129,21 +129,21 @@ function replaceOrThrow(filePath, content, pattern, replacement, label) {
 	return updated;
 }
 
-function patchNvDecoderForRecordlyCallbacks() {
+function patchNvDecoderForNekoCutCallbacks() {
 	const nvDecoderDir = path.join(videoCodecSdkRoot, "Samples", "NvCodec", "NvDecoder");
 	const headerPath = path.join(nvDecoderDir, "NvDecoder.h");
 	const sourcePath = path.join(nvDecoderDir, "NvDecoder.cpp");
 
 	let header = readFileSync(headerPath, "utf8");
-	if (!header.includes("RecordlyMappedFrameHandler")) {
+	if (!header.includes("NekoCutMappedFrameHandler")) {
 		header = replaceOrThrow(
 			headerPath,
 			header,
 			/#include "nvcuvid\.h"\r?\n/,
 			`#include "nvcuvid.h"
 
-using RecordlyMappedFrameHandler = void (*)(CUdeviceptr, unsigned int, int, int, int, int64_t, void*);
-using RecordlyDisplayFramePolicy = bool (*)(int, void*);
+using NekoCutMappedFrameHandler = void (*)(CUdeviceptr, unsigned int, int, int, int, int64_t, void*);
+using NekoCutDisplayFramePolicy = bool (*)(int, void*);
 `,
 			"NvDecoder callback aliases",
 		);
@@ -152,8 +152,8 @@ using RecordlyDisplayFramePolicy = bool (*)(int, void*);
 			header,
 			/ {4}int setReconfigParams\(const Rect \* pCropRect, const Dim \* pResizeDim\);\r?\n/,
 			`    int setReconfigParams(const Rect * pCropRect, const Dim * pResizeDim);
-    void SetMappedFrameHandler(RecordlyMappedFrameHandler handler, void* userData) { m_recordlyMappedFrameHandler = handler; m_recordlyMappedFrameUserData = userData; }
-    void SetDisplayFramePolicy(RecordlyDisplayFramePolicy policy, void* userData) { m_recordlyDisplayFramePolicy = policy; m_recordlyDisplayFramePolicyUserData = userData; }
+    void SetMappedFrameHandler(NekoCutMappedFrameHandler handler, void* userData) { m_nekocutMappedFrameHandler = handler; m_nekocutMappedFrameUserData = userData; }
+    void SetDisplayFramePolicy(NekoCutDisplayFramePolicy policy, void* userData) { m_nekocutDisplayFramePolicy = policy; m_nekocutDisplayFramePolicyUserData = userData; }
     int GetDisplayFrameCount() const { return m_nDisplayFrameCount; }
 `,
 			"NvDecoder public callback methods",
@@ -164,10 +164,10 @@ using RecordlyDisplayFramePolicy = bool (*)(int, void*);
 			/ {4}int m_nDecodedFrame = 0, m_nDecodedFrameReturned = 0;\r?\n/,
 			`    int m_nDecodedFrame = 0, m_nDecodedFrameReturned = 0;
     int m_nDisplayFrameCount = 0;
-    RecordlyMappedFrameHandler m_recordlyMappedFrameHandler = nullptr;
-    void* m_recordlyMappedFrameUserData = nullptr;
-    RecordlyDisplayFramePolicy m_recordlyDisplayFramePolicy = nullptr;
-    void* m_recordlyDisplayFramePolicyUserData = nullptr;
+    NekoCutMappedFrameHandler m_nekocutMappedFrameHandler = nullptr;
+    void* m_nekocutMappedFrameUserData = nullptr;
+    NekoCutDisplayFramePolicy m_nekocutDisplayFramePolicy = nullptr;
+    void* m_nekocutDisplayFramePolicyUserData = nullptr;
 `,
 			"NvDecoder callback state",
 		);
@@ -175,7 +175,7 @@ using RecordlyDisplayFramePolicy = bool (*)(int, void*);
 	}
 
 	let source = readFileSync(sourcePath, "utf8");
-	if (!source.includes("Recordly mapped frame callback")) {
+	if (!source.includes("NekoCut mapped frame callback")) {
 		source = replaceOrThrow(
 			sourcePath,
 			source,
@@ -186,25 +186,25 @@ using RecordlyDisplayFramePolicy = bool (*)(int, void*);
     }
 
     const int displayFrameIndex = m_nDisplayFrameCount++;
-    if (m_recordlyDisplayFramePolicy &&
-        !m_recordlyDisplayFramePolicy(displayFrameIndex, m_recordlyDisplayFramePolicyUserData))
+    if (m_nekocutDisplayFramePolicy &&
+        !m_nekocutDisplayFramePolicy(displayFrameIndex, m_nekocutDisplayFramePolicyUserData))
     {
         NVDEC_API_CALL(cuvidUnmapVideoFrame(m_hDecoder, dpSrcFrame));
         return 1;
     }
 
-    // Recordly mapped frame callback keeps the CUDA helper from making an
+    // NekoCut mapped frame callback keeps the CUDA helper from making an
     // extra device-to-device copy when the caller can consume mapped NV12.
-    if (m_recordlyMappedFrameHandler)
+    if (m_nekocutMappedFrameHandler)
     {
-        m_recordlyMappedFrameHandler(
+        m_nekocutMappedFrameHandler(
             dpSrcFrame,
             nSrcPitch,
             m_nWidth,
             m_nHeight,
             m_nSurfaceHeight,
             pDispInfo->timestamp,
-            m_recordlyMappedFrameUserData);
+            m_nekocutMappedFrameUserData);
         NVDEC_API_CALL(cuvidUnmapVideoFrame(m_hDecoder, dpSrcFrame));
         return 1;
     }
@@ -218,7 +218,7 @@ using RecordlyDisplayFramePolicy = bool (*)(int, void*);
 }
 
 try {
-	patchNvDecoderForRecordlyCallbacks();
+	patchNvDecoderForNekoCutCallbacks();
 } catch (error) {
 	fallbackToBundledHelperOrExit(
 		`Failed to patch NVIDIA Video Codec SDK samples: ${error instanceof Error ? error.message : String(error)}`,
@@ -273,7 +273,7 @@ try {
 	);
 }
 
-const exePath = path.join(buildDir, "Release", "recordly-nvidia-cuda-compositor.exe");
+const exePath = path.join(buildDir, "Release", "nekocut-nvidia-cuda-compositor.exe");
 if (!existsSync(exePath)) {
 	console.error("[build-nvidia-cuda-compositor] Expected exe not found at", exePath);
 	process.exit(1);
@@ -287,6 +287,6 @@ const manifestPath = updateNativeHelperManifest({
 	helperId,
 	sourceDir,
 	binaryPath: bundledExePath,
-	binaryName: "recordly-nvidia-cuda-compositor.exe",
+	binaryName: "nekocut-nvidia-cuda-compositor.exe",
 });
 console.log(`[build-nvidia-cuda-compositor] Updated helper manifest: ${manifestPath}`);

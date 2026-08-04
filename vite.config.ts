@@ -6,7 +6,7 @@ import electron from "vite-plugin-electron/simple";
 
 function electronMainCjsOutputPlugin(): Plugin {
 	return {
-		name: "recordly-electron-main-cjs-output",
+		name: "nekocut-electron-main-cjs-output",
 		enforce: "post",
 		config(config) {
 			// Vite mergeConfig concatenates lib.formats with the plugin's ESM default.
@@ -36,7 +36,7 @@ function electronMainCjsOutputPlugin(): Plugin {
 
 function electronMainCjsGuardPlugin(): Plugin {
 	return {
-		name: "recordly-electron-main-cjs-guard",
+		name: "nekocut-electron-main-cjs-guard",
 		closeBundle() {
 			const scriptPath = path.resolve(__dirname, "scripts/smoke-electron-main-cjs.mjs");
 			const result = spawnSync(process.execPath, [scriptPath], {

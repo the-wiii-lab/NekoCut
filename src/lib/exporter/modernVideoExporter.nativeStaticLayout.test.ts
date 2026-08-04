@@ -127,7 +127,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 		];
 		const exporter = createExporter({
 			speedRegions,
-			sourceAudioFallbackPaths: ["C:\\recordly\\recording.system.wav"],
+			sourceAudioFallbackPaths: ["C:\\nekocut\\recording.system.wav"],
 		});
 
 		expect(
@@ -140,7 +140,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 		).toMatchObject({
 			audioMode: "edited-track",
 			strategy: "filtergraph-fast-path",
-			audioSourcePath: "C:\\recordly\\recording.system.wav",
+			audioSourcePath: "C:\\nekocut\\recording.system.wav",
 			audioSourceSampleRate: 48_000,
 			editedTrackSegments: [
 				{ startMs: 0, endMs: 1_000, speed: 1 },
@@ -151,8 +151,8 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 	});
 
 	it("mixes companion sidecar audio when the source MP4 also has an audio track", () => {
-		const videoPath = "C:\\recordly\\recording.mp4";
-		const micPath = "C:\\recordly\\recording.mic.wav";
+		const videoPath = "C:\\nekocut\\recording.mp4";
+		const micPath = "C:\\nekocut\\recording.mic.wav";
 		const exporter = createExporter({
 			videoUrl: `file:///${videoPath.replace(/\\/g, "/")}`,
 			sourceAudioFallbackPaths: [micPath],
@@ -166,7 +166,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 	});
 
 	it("keeps timed companion audio on the offline render path", () => {
-		const audioPath = "C:\\recordly\\recording.system.wav";
+		const audioPath = "C:\\nekocut\\recording.system.wav";
 		const speedRegions: SpeedRegion[] = [
 			{ id: "speed-1", startMs: 1_000, endMs: 4_000, speed: 1.5 },
 		];
@@ -347,7 +347,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 			getAssetBasePath: () => Promise<string>;
 			listAssetDirectory: () => Promise<{ success: true; files: string[] }>;
 		};
-		electronAPI.getAssetBasePath = vi.fn(async () => "file:///C:/Recordly/resources/");
+		electronAPI.getAssetBasePath = vi.fn(async () => "file:///C:/NekoCut/resources/");
 		electronAPI.listAssetDirectory = vi.fn(async () => ({
 			success: true,
 			files: ["tahoe-light.jpg"],
@@ -355,13 +355,13 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 
 		await expect(exporter.resolveNativeStaticLayoutBackground()).resolves.toEqual({
 			backgroundColor: "#101010",
-			backgroundImagePath: "C:/Recordly/resources/wallpapers/tahoe-light.jpg",
+			backgroundImagePath: "C:/NekoCut/resources/wallpapers/tahoe-light.jpg",
 		});
 	});
 
 	it("reports video backgrounds while speed can use native timeline maps", () => {
 		const exporter = createExporter({
-			wallpaper: "file:///C:/Recordly/background.webm",
+			wallpaper: "file:///C:/NekoCut/background.webm",
 			speedRegions: [{ id: "speed-1", startMs: 1_000, endMs: 4_000, speed: 1.5 }],
 		});
 
@@ -380,7 +380,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 	it("collects every native static-layout blocker for beta diagnostics", () => {
 		const exporter = createExporter({
 			width: 1921,
-			wallpaper: "file:///C:/Recordly/background.webm",
+			wallpaper: "file:///C:/NekoCut/background.webm",
 			speedRegions: [{ id: "speed-1", startMs: 1_000, endMs: 4_000, speed: 1.5 }],
 			annotationRegions: [{ id: "annotation-1", startMs: 0, endMs: 1_000 }],
 			autoCaptions: [{ id: "caption-1", text: "hello", startMs: 0, endMs: 1_000 }],
@@ -435,14 +435,14 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 		electronAPI.writeExportStreamChunk = vi.fn(async () => ({ success: true }));
 		electronAPI.closeExportStream = vi.fn(async () => ({
 			success: true,
-			tempPath: "C:/Temp/recordly-background.jpg",
+			tempPath: "C:/Temp/nekocut-background.jpg",
 			bytesWritten: jpegBytes.byteLength,
 		}));
 
 		await expect(exporter.resolveNativeStaticLayoutBackground()).resolves.toEqual({
 			backgroundColor: "#101010",
-			backgroundImagePath: "C:/Temp/recordly-background.jpg",
-			temporaryPath: "C:/Temp/recordly-background.jpg",
+			backgroundImagePath: "C:/Temp/nekocut-background.jpg",
+			temporaryPath: "C:/Temp/nekocut-background.jpg",
 		});
 		expect(electronAPI.openExportStream).toHaveBeenCalledWith({ extension: "jpg" });
 		expect(electronAPI.writeExportStreamChunk).toHaveBeenCalledTimes(1);
@@ -701,7 +701,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 			speedRegions,
 			webcam: {
 				enabled: true,
-				sourcePath: "C:\\recordly\\webcam.mp4",
+				sourcePath: "C:\\nekocut\\webcam.mp4",
 			},
 		});
 
@@ -721,7 +721,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 		const exporter = createExporter({
 			webcam: {
 				enabled: true,
-				sourcePath: "C:\\recordly\\webcam.mp4",
+				sourcePath: "C:\\nekocut\\webcam.mp4",
 				width: 60,
 				height: 35,
 			},
@@ -747,7 +747,7 @@ describe("ModernVideoExporter native static-layout eligibility", () => {
 			speedRegions,
 			webcam: {
 				enabled: true,
-				sourcePath: "C:\\recordly\\webcam.mp4",
+				sourcePath: "C:\\nekocut\\webcam.mp4",
 			},
 		});
 

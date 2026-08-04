@@ -8,12 +8,13 @@ Version 3, 19 November 2007
   to power a website or service (SaaS)**, you MUST make your **entire 
   source code** (including all edits) p**ublicly available** under this 
   same AGPLv3 license.
-- You CANNOT use the "Recordly" name or branding for your own project.
+- You CANNOT use the "NekoCut" name or branding for your own project.
 - If you use Recordly's code or create code derived from Recordly you must attribute Recordly in the user-facing UI and the repo.
 
 Copyright (C) 2026 webadderall
 
 Recordly is an independent application that started as a fork of the OpenScreen project, authored by Siddharth Vaddem (2025).
+NekoCut is derived from Recordly. You must attribute Recordly (https://github.com/webadderall/Recordly) in the user-facing UI and the repo.
 
 ---
 PART 1: THE AGPLv3 LICENSE 

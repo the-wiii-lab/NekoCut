@@ -174,7 +174,7 @@ describe("normalizeNativeStaticLayoutBackground", () => {
 			offsetX: 160,
 			offsetY: 90,
 			backgroundColor: "#101010",
-			backgroundImagePath: "Z:\\recordly-missing-wallpaper\\midnight-8.jpg",
+			backgroundImagePath: "Z:\\nekocut-missing-wallpaper\\midnight-8.jpg",
 		});
 
 		expect(normalized.backgroundImagePath).toBeNull();
@@ -565,16 +565,16 @@ describe("resolveExperimentalNvidiaCudaExportScriptPath", () => {
 				return;
 			}
 
-			const resourcesPath = "C:\\Recordly\\resources";
+			const resourcesPath = "C:\\NekoCut\\resources";
 			const unpackedScriptPath =
-				"C:\\Recordly\\resources\\app.asar.unpacked\\electron\\native\\nvidia-cuda-compositor\\run-mp4-pipeline.mjs";
+				"C:\\NekoCut\\resources\\app.asar.unpacked\\electron\\native\\nvidia-cuda-compositor\\run-mp4-pipeline.mjs";
 			const asarScriptPath =
-				"C:\\Recordly\\resources\\app.asar\\electron\\native\\nvidia-cuda-compositor\\run-mp4-pipeline.mjs";
+				"C:\\NekoCut\\resources\\app.asar\\electron\\native\\nvidia-cuda-compositor\\run-mp4-pipeline.mjs";
 			Object.defineProperty(process, "resourcesPath", {
 				configurable: true,
 				value: resourcesPath,
 			});
-			electronAppMock.getAppPath.mockReturnValue("C:\\Recordly\\resources\\app.asar");
+			electronAppMock.getAppPath.mockReturnValue("C:\\NekoCut\\resources\\app.asar");
 			fsMocks.access.mockImplementation(async (candidate: string) => {
 				if (candidate === unpackedScriptPath || candidate === asarScriptPath) {
 					return;
@@ -852,7 +852,7 @@ describe("muxExportedVideoAudioBuffer", () => {
 		const videoData = new ArrayBuffer(32);
 		const result = await muxExportedVideoAudioBuffer(videoData, { audioMode: "none" });
 
-		expect(result.outputPath).toMatch(/recordly-export-video-/);
+		expect(result.outputPath).toMatch(/nekocut-export-video-/);
 	});
 });
 

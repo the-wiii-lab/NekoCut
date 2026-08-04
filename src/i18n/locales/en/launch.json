@@ -50,8 +50,8 @@
 			"checkingTitle": "Checking for updates...",
 			"downloadingTitle": "Downloading update...",
 			"errorTitle": "Update check failed. Click to retry.",
-			"upToDateTitle": "Recordly {{version}} is up to date.",
-			"availableTitle": "Recordly {{version}} is available.",
+			"upToDateTitle": "NekoCut {{version}} is up to date.",
+			"availableTitle": "NekoCut {{version}} is available.",
 			"availableGenericTitle": "An update is available."
 		}
 	},
@@ -67,10 +67,10 @@
 		"share": "Share"
 	},
 	"permissions": {
-		"screenRecordingNeeded": "Recordly needs Screen Recording permission before you start. System Settings has been opened. After enabling it, quit and reopen Recordly.",
-		"screenRecordingMissing": "Screen Recording permission is still missing. System Settings has been opened again. Enable it, then quit and reopen Recordly before recording.",
-		"accessibilityNeeded": "Recordly also needs Accessibility permission for cursor tracking. System Settings has been opened. After enabling it, quit and reopen Recordly.",
-		"accessibilityMissing": "Accessibility permission is still missing. System Settings has been opened again. Enable it, then quit and reopen Recordly before recording.",
+		"screenRecordingNeeded": "NekoCut needs Screen Recording permission before you start. System Settings has been opened. After enabling it, quit and reopen NekoCut.",
+		"screenRecordingMissing": "Screen Recording permission is still missing. System Settings has been opened again. Enable it, then quit and reopen NekoCut before recording.",
+		"accessibilityNeeded": "NekoCut also needs Accessibility permission for cursor tracking. System Settings has been opened. After enabling it, quit and reopen NekoCut.",
+		"accessibilityMissing": "Accessibility permission is still missing. System Settings has been opened again. Enable it, then quit and reopen NekoCut before recording.",
 		"selectSource": "Please select a source to record",
 		"systemAudioUnavailable": "System audio is not available for this source. Recording will continue without system audio.",
 		"microphoneDenied": "Microphone access was denied. Recording will continue without microphone audio.",

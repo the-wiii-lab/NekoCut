@@ -2,7 +2,7 @@
  * Extension Loader — Main Process
  *
  * Discovers, validates, and manages extensions installed in the
- * extensions directory (~/.recordly/extensions/ or userData/extensions/).
+ * extensions directory (~/.nekocut/extensions/ or userData/extensions/).
  *
  * Extensions are loaded from disk by reading their manifest files.
  * The actual extension code runs in the renderer process and uses the
@@ -16,7 +16,7 @@ import { app } from "electron";
 import type { ExtensionInfo, ExtensionManifest, ExtensionStatus } from "./extensionTypes";
 
 const EXTENSIONS_DIR_NAME = "extensions";
-const MANIFEST_FILE_NAME = "recordly-extension.json";
+const MANIFEST_FILE_NAME = "nekocut-extension.json";
 const BUILTIN_EXTENSIONS_DIR = "builtin-extensions";
 const EXTENSION_STATE_FILE_NAME = "extension-state.json";
 

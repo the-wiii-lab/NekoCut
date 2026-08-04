@@ -1,7 +1,7 @@
 {
 	"app": {
-		"name": "Recordly",
-		"editorTitle": "Recordly 編輯器",
+		"name": "NekoCut",
+		"editorTitle": "NekoCut 編輯器",
 		"subtitle": "螢幕錄製與編輯",
 		"language": "語言",
 		"manageRecordings": "打開錄製影像文件夾"

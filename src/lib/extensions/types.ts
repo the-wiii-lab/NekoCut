@@ -1,12 +1,12 @@
 /**
- * Recordly Extension System — Core Types
+ * NekoCut Extension System — Core Types
  *
  * Extensions are renderer-loaded modules that can hook into the render pipeline,
  * bundle assets, register UI panels, and respond to playback/timeline events.
  */
 
 // ---------------------------------------------------------------------------
-// Extension Manifest (recordly-extension.json)
+// Extension Manifest (nekocut-extension.json)
 // ---------------------------------------------------------------------------
 
 export interface ExtensionManifest {
@@ -24,7 +24,7 @@ export interface ExtensionManifest {
 	homepage?: string;
 	/** License identifier (SPDX) */
 	license?: string;
-	/** Minimum Recordly version required */
+	/** Minimum NekoCut version required */
 	engine?: string;
 	/** Icon path relative to extension root */
 	icon?: string;
@@ -48,7 +48,7 @@ export type ExtensionPermission =
 /**
  * Optional manifest metadata for packaged assets.
  *
- * Recordly does not auto-register these entries at runtime today.
+ * NekoCut does not auto-register these entries at runtime today.
  * Extensions still need to wire behavior from activate() via host APIs like
  * registerFrame(), registerSettingsPanel(), resolveAsset(), and playSound().
  */
@@ -415,7 +415,7 @@ export interface ExtensionSettingsPanel {
 // Extension API — The API object passed to extension activate()
 // ---------------------------------------------------------------------------
 
-export interface RecordlyExtensionAPI {
+export interface NekoCutExtensionAPI {
 	/** Register a render hook at a specific pipeline phase */
 	registerRenderHook(phase: RenderHookPhase, hook: RenderHookFn): () => void;
 
@@ -591,9 +591,9 @@ export interface RecordlyExtensionAPI {
 // Extension Module — what the extension's main JS file must export
 // ---------------------------------------------------------------------------
 
-export interface RecordlyExtensionModule {
+export interface NekoCutExtensionModule {
 	/** Called when the extension is activated */
-	activate(api: RecordlyExtensionAPI): void | Promise<void>;
+	activate(api: NekoCutExtensionAPI): void | Promise<void>;
 	/** Called when the extension is deactivated */
 	deactivate?(): void | Promise<void>;
 }

@@ -326,7 +326,7 @@ async function getSystemCursorAssets() {
 		sourcePath,
 		getSystemCursorHelperBinaryPath(),
 		"system cursor helper",
-		"recordly-system-cursors",
+		"nekocut-system-cursors",
 	);
 	const { stdout } = await execFileAsync(binaryPath, [], {
 		timeout: 15000,
@@ -434,7 +434,7 @@ export function registerRecordingHandlers(
 					const recordingsDir = await getRecordingsDir();
 					const timestamp = Date.now();
 					const outputPath = path.join(recordingsDir, `recording-${timestamp}.mp4`);
-					tempVideoPath = path.join(app.getPath("temp"), `recordly-native-${timestamp}.mp4`);
+					tempVideoPath = path.join(app.getPath("temp"), `nekocut-native-${timestamp}.mp4`);
 					
 					let captureOutput = "";
 					let systemAudioPath: string | null = null;
@@ -497,7 +497,7 @@ export function registerRecordingHandlers(
 						);
 						tempSystemAudioPath = path.join(
 							app.getPath("temp"),
-							`recordly-native-${timestamp}.system.wav`,
+							`nekocut-native-${timestamp}.system.wav`,
 						);
 						config.captureSystemAudio = true;
 						config.audioOutputPath = tempSystemAudioPath;
@@ -508,7 +508,7 @@ export function registerRecordingHandlers(
 
 					if (options?.capturesMicrophone && !browserMicFallbackRequested) {
 						microphonePath = path.join(recordingsDir, `recording-${timestamp}.mic.wav`);
-						tempMicPath = path.join(app.getPath("temp"), `recordly-native-${timestamp}.mic.wav`);
+						tempMicPath = path.join(app.getPath("temp"), `nekocut-native-${timestamp}.mic.wav`);
 						config.captureMic = true;
 						config.micOutputPath = tempMicPath;
 						if (options.microphoneLabel) {
@@ -692,12 +692,12 @@ export function registerRecordingHandlers(
 					!ALLOW_RECORDLY_WINDOW_CAPTURE &&
 					source?.id?.startsWith("window:") &&
 					appName &&
-					(appName === ownAppName || appName === "recordly")
+					(appName === ownAppName || appName === "nekocut")
 				) {
 					return {
 						success: false,
 						message:
-							"Cannot record Recordly windows. Please select another app window.",
+							"Cannot record NekoCut windows. Please select another app window.",
 					};
 				}
 
@@ -806,8 +806,8 @@ export function registerRecordingHandlers(
 						type: "warning",
 						title: "Screen Recording Permission Required",
 						message:
-							"Recordly needs screen recording permission to capture your screen.",
-						detail: "Please open System Settings > Privacy & Security > Screen Recording, make sure Recordly is toggled ON, then try recording again.",
+							"NekoCut needs screen recording permission to capture your screen.",
+						detail: "Please open System Settings > Privacy & Security > Screen Recording, make sure NekoCut is toggled ON, then try recording again.",
 						buttons: ["Open System Settings", "Cancel"],
 						defaultId: 0,
 						cancelId: 1,
@@ -839,8 +839,8 @@ export function registerRecordingHandlers(
 					const { response } = await dialog.showMessageBox({
 						type: "warning",
 						title: "Microphone Permission Required",
-						message: "Recordly needs microphone permission to record audio.",
-						detail: "Please open System Settings > Privacy & Security > Microphone, make sure Recordly is toggled ON, then try recording again.",
+						message: "NekoCut needs microphone permission to record audio.",
+						detail: "Please open System Settings > Privacy & Security > Microphone, make sure NekoCut is toggled ON, then try recording again.",
 						buttons: ["Open System Settings", "Cancel"],
 						defaultId: 0,
 						cancelId: 1,

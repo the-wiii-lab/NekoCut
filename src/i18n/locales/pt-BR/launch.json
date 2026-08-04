@@ -50,8 +50,8 @@
 			"checkingTitle": "Verificando atualizações...",
 			"downloadingTitle": "Baixando atualização...",
 			"errorTitle": "Falha ao verificar atualizações. Clique para tentar novamente.",
-			"upToDateTitle": "Recordly {{version}} está atualizado.",
-			"availableTitle": "Recordly {{version}} está disponível.",
+			"upToDateTitle": "NekoCut {{version}} está atualizado.",
+			"availableTitle": "NekoCut {{version}} está disponível.",
 			"availableGenericTitle": "Há uma atualização disponível."
 		}
 	},
@@ -67,10 +67,10 @@
 		"share": "Compartilhar"
 	},
 	"permissions": {
-		"screenRecordingNeeded": "O Recordly precisa da permissão de Gravação de Tela antes de iniciar. Ajustes do Sistema foram abertos. Depois de ativar, feche e reabra o Recordly.",
-		"screenRecordingMissing": "A permissão de Gravação de Tela ainda está ausente. Ajustes do Sistema foram abertos novamente. Ative e depois feche e reabra o Recordly antes de gravar.",
-		"accessibilityNeeded": "O Recordly também precisa da permissão de Acessibilidade para rastrear o cursor. Ajustes do Sistema foram abertos. Depois de ativar, feche e reabra o Recordly.",
-		"accessibilityMissing": "A permissão de Acessibilidade ainda está ausente. Ajustes do Sistema foram abertos novamente. Ative e depois feche e reabra o Recordly antes de gravar.",
+		"screenRecordingNeeded": "O NekoCut precisa da permissão de Gravação de Tela antes de iniciar. Ajustes do Sistema foram abertos. Depois de ativar, feche e reabra o NekoCut.",
+		"screenRecordingMissing": "A permissão de Gravação de Tela ainda está ausente. Ajustes do Sistema foram abertos novamente. Ative e depois feche e reabra o NekoCut antes de gravar.",
+		"accessibilityNeeded": "O NekoCut também precisa da permissão de Acessibilidade para rastrear o cursor. Ajustes do Sistema foram abertos. Depois de ativar, feche e reabra o NekoCut.",
+		"accessibilityMissing": "A permissão de Acessibilidade ainda está ausente. Ajustes do Sistema foram abertos novamente. Ative e depois feche e reabra o NekoCut antes de gravar.",
 		"selectSource": "Selecione uma fonte para gravar",
 		"systemAudioUnavailable": "O áudio do sistema não está disponível para esta fonte. A gravação continuará sem áudio do sistema.",
 		"microphoneDenied": "O acesso ao microfone foi negado. A gravação continuará sem áudio do microfone.",

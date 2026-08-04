@@ -6,7 +6,7 @@ import { waitForWindowsCaptureStop } from "./windows";
 
 vi.mock("electron", () => ({
 	app: {
-		getPath: () => "C:\\RecordlyTest",
+		getPath: () => "C:\\NekoCutTest",
 	},
 	BrowserWindow: {
 		getAllWindows: () => [],
@@ -33,7 +33,7 @@ describe("waitForWindowsCaptureStop", () => {
 
 	it("resolves the helper output path when the process closes cleanly", async () => {
 		const proc = new FakeCaptureProcess();
-		setWindowsCaptureOutputBuffer("Recording stopped. Output path: C:\\Recordly\\capture.mp4");
+		setWindowsCaptureOutputBuffer("Recording stopped. Output path: C:\\NekoCut\\capture.mp4");
 
 		const stopped = waitForWindowsCaptureStop(
 			proc as unknown as Parameters<typeof waitForWindowsCaptureStop>[0],
@@ -41,14 +41,14 @@ describe("waitForWindowsCaptureStop", () => {
 		);
 		proc.emit("close", 0);
 
-		await expect(stopped).resolves.toBe("C:\\Recordly\\capture.mp4");
+		await expect(stopped).resolves.toBe("C:\\NekoCut\\capture.mp4");
 		expect(proc.kill).not.toHaveBeenCalled();
 	});
 
 	it("resolves the fallback target path when the helper closes cleanly without output path", async () => {
 		const proc = new FakeCaptureProcess();
 		setWindowsCaptureOutputBuffer("Recording stopped without output path");
-		setWindowsCaptureTargetPath("C:\\Recordly\\fallback.mp4");
+		setWindowsCaptureTargetPath("C:\\NekoCut\\fallback.mp4");
 
 		const stopped = waitForWindowsCaptureStop(
 			proc as unknown as Parameters<typeof waitForWindowsCaptureStop>[0],
@@ -56,7 +56,7 @@ describe("waitForWindowsCaptureStop", () => {
 		);
 		proc.emit("close", 0);
 
-		await expect(stopped).resolves.toBe("C:\\Recordly\\fallback.mp4");
+		await expect(stopped).resolves.toBe("C:\\NekoCut\\fallback.mp4");
 		expect(proc.kill).not.toHaveBeenCalled();
 	});
 

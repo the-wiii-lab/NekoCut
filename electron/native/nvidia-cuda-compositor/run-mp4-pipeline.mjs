@@ -928,7 +928,7 @@ function parseProbeSummary(stdout) {
 
 const inputPath = resolve(getArg("--input"));
 const outputPath = resolve(
-	getArg("--output", join(scriptDir, "recordly-nvdec-nvenc-mp4-output.mp4")),
+	getArg("--output", join(scriptDir, "nekocut-nvdec-nvenc-mp4-output.mp4")),
 );
 const requestedOutputWidth = Math.round(getNumberArg("--width", 0));
 const requestedOutputHeight = Math.round(getNumberArg("--height", 0));
@@ -994,17 +994,17 @@ function resolveNativeProbePath() {
 	const platformArch = process.arch === "arm64" ? "win32-arm64" : "win32-x64";
 	const candidates = [
 		configuredPath,
-		join(scriptDir, "build", "Release", "recordly-nvidia-cuda-compositor.exe"),
+		join(scriptDir, "build", "Release", "nekocut-nvidia-cuda-compositor.exe"),
 		join(
 			repoRoot,
 			"electron",
 			"native",
 			"bin",
 			platformArch,
-			"recordly-nvidia-cuda-compositor.exe",
+			"nekocut-nvidia-cuda-compositor.exe",
 		),
 		// Backward-compatible legacy helper path while old work dirs are being retired.
-		join(scriptDir, "build", "Release", "recordly-nvdec-nvenc-probe.exe"),
+		join(scriptDir, "build", "Release", "nekocut-nvdec-nvenc-probe.exe"),
 	].filter(Boolean);
 
 	for (const candidate of candidates) {

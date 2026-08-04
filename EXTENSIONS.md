@@ -1,18 +1,18 @@
-# Recordly Extension API
+# NekoCut Extension API
 
-Go to https://www.marketplace.recordly.dev/extensions for full, regularly updated documentation
+Go to https://www.marketplace.nekocut.dev/extensions for full, regularly updated documentation
 
-Recordly extensions run in the editor renderer and use a permission-gated host API. They can draw into the render pipeline, react to playback and export events, register cursor effects, add settings panels, and contribute packaged assets such as frames, wallpapers, and cursor styles.
+NekoCut extensions run in the editor renderer and use a permission-gated host API. They can draw into the render pipeline, react to playback and export events, register cursor effects, add settings panels, and contribute packaged assets such as frames, wallpapers, and cursor styles.
 
 ## Quick Start
 
-For local user-installed extensions, use `Extensions -> Open Directory` in the app. Recordly stores them in the app `userData/extensions` directory. This repo also includes installable example bundles under `extension-examples/`.
+For local user-installed extensions, use `Extensions -> Open Directory` in the app. NekoCut stores them in the app `userData/extensions` directory. This repo also includes installable example bundles under `extension-examples/`.
 
 ### Minimum Extension
 
 ```text
 my-extension/
-  recordly-extension.json
+  nekocut-extension.json
   index.js
 ```
 
@@ -39,12 +39,12 @@ export function deactivate() {}
 
 ### TypeScript
 
-Extensions can be authored in TypeScript. Import the `RecordlyExtensionAPI` type from `types.ts` in this repo for full IDE auto-complete and compile-time checks:
+Extensions can be authored in TypeScript. Import the `NekoCutExtensionAPI` type from `types.ts` in this repo for full IDE auto-complete and compile-time checks:
 
 ```ts
-import type { RecordlyExtensionAPI } from "./types";
+import type { NekoCutExtensionAPI } from "./types";
 
-export function activate(api: RecordlyExtensionAPI) {
+export function activate(api: NekoCutExtensionAPI) {
   api.registerRenderHook("final", (ctx) => {
     ctx.ctx.fillStyle = "rgba(255,255,255,0.1)";
     ctx.ctx.fillRect(0, 0, ctx.width, 30);
@@ -54,7 +54,7 @@ export function activate(api: RecordlyExtensionAPI) {
 export function deactivate() {}
 ```
 
-Recordly loads the `main` entry from the manifest, which must be a `.js` file. If you author in TypeScript, compile or bundle to JavaScript before packaging. A `tsconfig.json` with `"module": "ESNext"` and `"target": "ESNext"` works well since extensions run in a Chromium renderer.
+NekoCut loads the `main` entry from the manifest, which must be a `.js` file. If you author in TypeScript, compile or bundle to JavaScript before packaging. A `tsconfig.json` with `"module": "ESNext"` and `"target": "ESNext"` works well since extensions run in a Chromium renderer.
 
 ### Manifest Screenshots
 
@@ -74,7 +74,7 @@ Paths are relative to the extension root. The marketplace displays screenshots i
 
 ## Manifest
 
-`recordly-extension.json` is validated both when the extension loads and when a zip is uploaded to the marketplace.
+`nekocut-extension.json` is validated both when the extension loads and when a zip is uploaded to the marketplace.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -85,14 +85,14 @@ Paths are relative to the extension root. The marketplace displays screenshots i
 | `author` | `string` | No | Author or organisation |
 | `homepage` | `string` | No | HTTPS homepage or repository URL |
 | `license` | `string` | No | SPDX license identifier |
-| `engine` | `string` | No | Minimum supported Recordly version |
+| `engine` | `string` | No | Minimum supported NekoCut version |
 | `icon` | `string` | No | Relative path to a PNG icon |
 | `screenshots` | `string[]` | No | Relative paths to preview images shown in the marketplace |
 | `main` | `string` | Yes | Relative entry point JS file |
 | `permissions` | `string[]` | Yes | Required capabilities |
 | `contributes` | `object` | No | Metadata for packaged frames, cursor styles, sounds, wallpapers, and webcam frames |
 
-`contributes` is metadata only today. Recordly does not auto-register runtime behavior from the manifest. Use `activate()` to call APIs such as `registerFrame()`, `registerWallpaper()`, `registerCursorStyle()`, `registerSettingsPanel()`, and `playSound()`.
+`contributes` is metadata only today. NekoCut does not auto-register runtime behavior from the manifest. Use `activate()` to call APIs such as `registerFrame()`, `registerWallpaper()`, `registerCursorStyle()`, `registerSettingsPanel()`, and `playSound()`.
 
 ## Permissions
 
@@ -123,7 +123,7 @@ Render hooks draw into `hookCtx.ctx`, a `CanvasRenderingContext2D`, at specific 
 ### Inside vs Outside the Scene Transform
 
 - `post-video`, `post-zoom`, and `post-cursor` already follow zoom and motion in preview and export.
-- `post-webcam`, `post-annotations`, and `final` run after Recordly restores the canvas transform. Use `sceneTransform` manually if you want those overlays to move with the scene.
+- `post-webcam`, `post-annotations`, and `final` run after NekoCut restores the canvas transform. Use `sceneTransform` manually if you want those overlays to move with the scene.
 
 ### RenderHookContext
 
@@ -235,7 +235,7 @@ api.drawIcon(ctx, "Sparkle", 100, 100, 20, "#2563EB", "regular");
 
 ### Drawing Icons
 
-Extensions can draw icons from Recordly's bundled Phosphor icon set directly on a canvas context:
+Extensions can draw icons from NekoCut's bundled Phosphor icon set directly on a canvas context:
 
 ```js
 api.drawIcon(
@@ -300,7 +300,7 @@ Use `parentSection` to nest your panel inside an existing area such as `cursor` 
 
 ## Lifecycle
 
-1. Discovery: Recordly scans built-in extensions and the user extensions directory.
+1. Discovery: NekoCut scans built-in extensions and the user extensions directory.
 2. Activation: `activate(api)` runs and you register hooks, effects, panels, and assets.
 3. Runtime: Registered callbacks execute in preview and export according to their phase.
 4. Deactivation: `deactivate()` runs and all registrations are automatically disposed.

@@ -66,7 +66,7 @@
 		"connectedZoomDuration": "연결 확대 시간",
 		"connectedZoomEasing": "연결 이동 커브",
 		"zoomEasingOptions": {
-			"recordly": "Recordly",
+			"nekocut": "NekoCut",
 			"glide": "Glide",
 			"smooth": "Smooth",
 			"snappy": "Snappy",

@@ -889,7 +889,7 @@ async function main() {
 	await ensureBuildArtifacts();
 	const benchmarkRequests = buildBenchmarkRequests();
 
-	const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "recordly-export-queue-bench-"));
+	const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "nekocut-export-queue-bench-"));
 	const inputExtension = providedInputPath ? path.extname(providedInputPath) || ".mp4" : ".mp4";
 	const inputPath = path.join(tempDir, `input${inputExtension}`);
 	const webcamExtension = providedWebcamInputPath

@@ -82,7 +82,7 @@ export function registerSourceHandlers({
 		const ownWindowNames = new Set(
 			[
 				app.getName(),
-				"Recordly",
+				"NekoCut",
 				...BrowserWindow.getAllWindows().flatMap((win) => {
 					const title = win.getTitle().trim();
 					return title ? [title] : [];
@@ -150,7 +150,7 @@ export function registerSourceHandlers({
 						return true;
 					}
 
-					if (ALLOW_RECORDLY_WINDOW_CAPTURE && normalizedName.includes("recordly")) {
+					if (ALLOW_RECORDLY_WINDOW_CAPTURE && normalizedName.includes("nekocut")) {
 						return true;
 					}
 
@@ -207,8 +207,8 @@ export function registerSourceHandlers({
 
 					if (
 						ALLOW_RECORDLY_WINDOW_CAPTURE &&
-						(normalizedAppName === "recordly" ||
-							normalizedWindowName?.includes("recordly"))
+						(normalizedAppName === "nekocut" ||
+							normalizedWindowName?.includes("nekocut"))
 					) {
 						return true;
 					}
@@ -267,7 +267,7 @@ export function registerSourceHandlers({
 						return true;
 					}
 
-					if (ALLOW_RECORDLY_WINDOW_CAPTURE && normalizedName.includes("recordly")) {
+					if (ALLOW_RECORDLY_WINDOW_CAPTURE && normalizedName.includes("nekocut")) {
 						return true;
 					}
 

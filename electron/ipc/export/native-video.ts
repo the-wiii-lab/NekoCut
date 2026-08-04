@@ -1904,7 +1904,7 @@ async function resolveExperimentalWindowsGpuExporterPath() {
 		return null;
 	}
 
-	const executableNames = ["recordly-gpu-export.exe", "gpu-export-probe.exe"];
+	const executableNames = ["nekocut-gpu-export.exe", "gpu-export-probe.exe"];
 	const candidates: string[] = [];
 	const configuredPath = process.env.RECORDLY_WINDOWS_GPU_EXPORT_EXE;
 	if (configuredPath) {
@@ -3219,7 +3219,7 @@ export async function exportNativeStaticLayoutVideo(
 
 	const sessionId =
 		options.sessionId ??
-		`recordly-static-layout-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+		`nekocut-static-layout-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 	const session: NativeStaticLayoutExportSession = {
 		terminating: false,
 		currentProcess: null,
@@ -3894,7 +3894,7 @@ export async function probeNativeVideoEncoder(
 ) {
 	const outputPath = path.join(
 		app.getPath("temp"),
-		`recordly-export-probe-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.mp4`,
+		`nekocut-export-probe-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.mp4`,
 	);
 	const args = buildNativeVideoExportArgs(
 		encoderName,
@@ -4094,7 +4094,7 @@ export async function muxNativeVideoExportAudio(
 		const extension = getEditedAudioExtension(options.editedAudioMimeType);
 		audioInputPath = path.join(
 			app.getPath("temp"),
-			`recordly-export-audio-${Date.now()}-${Math.random().toString(36).slice(2, 8)}${extension}`,
+			`nekocut-export-audio-${Date.now()}-${Math.random().toString(36).slice(2, 8)}${extension}`,
 		);
 		const tempAudioWriteStartedAt = getNowMs();
 		await fs.writeFile(audioInputPath, Buffer.from(options.editedAudioData));
@@ -4151,7 +4151,7 @@ export async function muxExportedVideoAudioBuffer(
 ) {
 	const tempVideoPath = path.join(
 		app.getPath("temp"),
-		`recordly-export-video-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.mp4`,
+		`nekocut-export-video-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.mp4`,
 	);
 	const metrics: NativeVideoAudioMuxMetrics = {};
 	let succeeded = false;

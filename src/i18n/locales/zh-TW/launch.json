@@ -50,8 +50,8 @@
 		"checkingTitle": "正在檢查更新...",
 		"downloadingTitle": "正在下載更新...",
 		"errorTitle": "檢查更新失敗，點一下重試。",
-		"upToDateTitle": "Recordly {{version}} 已是最新版本。",
-		"availableTitle": "Recordly {{version}} 已推出新版本。",
+		"upToDateTitle": "NekoCut {{version}} 已是最新版本。",
+		"availableTitle": "NekoCut {{version}} 已推出新版本。",
 		"availableGenericTitle": "有可用更新。"
 		}
 	},
@@ -67,10 +67,10 @@
 		"share": "分享"
 	},
 	"permissions": {
-		"screenRecordingNeeded": "Recordly 需要「螢幕錄製」權限才能開始。已開啟系統設定。啟用後，請結束並重新開啟 Recordly。",
-		"screenRecordingMissing": "仍未取得「螢幕錄製」權限。已再次開啟系統設定。請先啟用，再結束並重新開啟 Recordly 後再錄製。",
-		"accessibilityNeeded": "Recordly 也需要「輔助使用」權限以追蹤游標。已開啟系統設定。啟用後，請結束並重新開啟 Recordly。",
-		"accessibilityMissing": "仍未取得「輔助使用」權限。已再次開啟系統設定。請先啟用，再結束並重新開啟 Recordly 後再錄製。",
+		"screenRecordingNeeded": "NekoCut 需要「螢幕錄製」權限才能開始。已開啟系統設定。啟用後，請結束並重新開啟 NekoCut。",
+		"screenRecordingMissing": "仍未取得「螢幕錄製」權限。已再次開啟系統設定。請先啟用，再結束並重新開啟 NekoCut 後再錄製。",
+		"accessibilityNeeded": "NekoCut 也需要「輔助使用」權限以追蹤游標。已開啟系統設定。啟用後，請結束並重新開啟 NekoCut。",
+		"accessibilityMissing": "仍未取得「輔助使用」權限。已再次開啟系統設定。請先啟用，再結束並重新開啟 NekoCut 後再錄製。",
 		"selectSource": "請選擇要錄製的來源",
 		"systemAudioUnavailable": "此來源不支援系統音訊，將在沒有系統音訊的情況下繼續錄製。",
 		"microphoneDenied": "麥克風存取遭拒，將在沒有麥克風音訊的情況下繼續錄製。",

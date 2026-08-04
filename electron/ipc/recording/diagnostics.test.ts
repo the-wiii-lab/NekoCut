@@ -14,7 +14,7 @@ describe("getCompanionAudioFallbackPaths", () => {
 	let execFileMock: ReturnType<typeof vi.fn>;
 
 	beforeEach(async () => {
-		tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "recordly-companion-audio-"));
+		tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "nekocut-companion-audio-"));
 		appDataPath = path.join(tempRoot, "AppData");
 		userDataPath = path.join(tempRoot, "UserData");
 		tempPath = path.join(tempRoot, "Temp");

@@ -42,8 +42,8 @@ const TAB_OPTIONS: { value: ExtensionTab; labelKey: string }[] = [
 	{ value: "installed", labelKey: "tabs.installed" },
 ];
 
-const EXTENSIONS_DOCS_URL = "https://marketplace.recordly.dev/extensions";
-const EXTENSIONS_SUBMIT_URL = "https://marketplace.recordly.dev/extensions/submit";
+const EXTENSIONS_DOCS_URL = "https://marketplace.nekocut.dev/extensions";
+const EXTENSIONS_SUBMIT_URL = "https://marketplace.nekocut.dev/extensions/submit";
 
 function toSafeHttpUrl(value?: string): string | null {
 	if (!value) return null;

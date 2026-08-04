@@ -87,7 +87,7 @@ import zhTWSettings from "@/i18n/locales/zh-TW/settings.json";
 import zhTWShortcuts from "@/i18n/locales/zh-TW/shortcuts.json";
 import zhTWTimeline from "@/i18n/locales/zh-TW/timeline.json";
 
-const LOCALE_STORAGE_KEY = "recordly.locale";
+const LOCALE_STORAGE_KEY = "nekocut.locale";
 
 type LocaleBundle = Record<I18nNamespace, Record<string, unknown>>;
 

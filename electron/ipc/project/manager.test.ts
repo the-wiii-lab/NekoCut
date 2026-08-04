@@ -11,7 +11,7 @@ describe("local media path policy", () => {
 	let appPath: string;
 
 	beforeEach(async () => {
-		tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "recordly-media-policy-"));
+		tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "nekocut-media-policy-"));
 		appDataPath = path.join(tempRoot, "AppData");
 		userDataPath = path.join(tempRoot, "UserData");
 		tempPath = path.join(tempRoot, "Temp");
@@ -144,7 +144,7 @@ describe("local media path policy", () => {
 	});
 
 	it("preserves an existing project thumbnail when no replacement is provided", async () => {
-		const projectPath = path.join(tempRoot, "Projects", "demo.recordly");
+		const projectPath = path.join(tempRoot, "Projects", "demo.nekocut");
 		const thumbnailDataUrl = `data:image/png;base64,${Buffer.from("png-thumbnail").toString("base64")}`;
 		await fs.mkdir(path.dirname(projectPath), { recursive: true });
 
@@ -159,7 +159,7 @@ describe("local media path policy", () => {
 
 	it("loads project files that start with a UTF-8 byte order mark", async () => {
 		const videoPath = path.join(tempPath, "recording.mp4");
-		const projectPath = path.join(tempPath, "recording.recordly");
+		const projectPath = path.join(tempPath, "recording.nekocut");
 		await fs.writeFile(videoPath, "test-video");
 		await fs.writeFile(
 			projectPath,
@@ -182,7 +182,7 @@ describe("local media path policy", () => {
 	it("rejects invalid project payloads before approving media paths", async () => {
 		const downloadsPath = path.join(tempRoot, "Downloads");
 		const videoPath = path.join(downloadsPath, "recording.mp4");
-		const projectPath = path.join(tempPath, "invalid.recordly");
+		const projectPath = path.join(tempPath, "invalid.nekocut");
 		await fs.mkdir(downloadsPath, { recursive: true });
 		await fs.writeFile(videoPath, "test-video");
 		await fs.writeFile(
@@ -206,7 +206,7 @@ describe("local media path policy", () => {
 		const downloadsPath = path.join(tempRoot, "Downloads");
 		const videoPath = path.join(tempPath, "recording.mp4");
 		const audioPath = path.join(downloadsPath, "music.ogg");
-		const projectPath = path.join(tempPath, "recording.recordly");
+		const projectPath = path.join(tempPath, "recording.nekocut");
 		await fs.mkdir(downloadsPath, { recursive: true });
 		await fs.writeFile(videoPath, "test-video");
 		await fs.writeFile(audioPath, "test-audio");

@@ -85,7 +85,7 @@
 		"connectedZoomDuration": "Connected Zoom Duration",
 		"connectedZoomEasing": "Connected Pan Curve",
 		"zoomEasingOptions": {
-			"recordly": "Recordly",
+			"nekocut": "NekoCut",
 			"glide": "Glide",
 			"smooth": "Smooth",
 			"snappy": "Snappy",

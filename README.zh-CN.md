@@ -1,7 +1,7 @@
 语言: [EN](README.md) | 简中
 
 <p align="center">
-  <img width="220" alt="Recordly logo" src="https://github.com/user-attachments/assets/082bb4b0-5fc5-4e9f-abda-55611fd6aded" />
+  <img width="220" alt="NekoCut logo" src="https://github.com/user-attachments/assets/082bb4b0-5fc5-4e9f-abda-55611fd6aded" />
 </p>
 
 <p align="center">
@@ -10,18 +10,18 @@
 </p>
 
 ### 无需额外剪辑，也能做出精致的屏幕录制。
-[Recordly](https://www.recordly.dev) 是一款**开源屏幕录制器**和编辑器，适合制作**操作讲解、演示、产品视频**等内容。  
+[NekoCut](https://github.com/the-wiii-lab/NekoCut) 是一款**开源屏幕录制器**和编辑器，适合制作**操作讲解、演示、产品视频**等内容。  
 **欢迎提交 PR。** [赞助](https://ko-fi.com/webadderall/goal?g=0)
 
 https://github.com/user-attachments/assets/9b66c71d-ac97-49ff-a0c9-63ac26edf2e4
 
 ---
 
-## Recordly 是什么？
+## NekoCut 是什么？
 
-Recordly 是一款桌面应用，用于录制并编辑屏幕内容，内置面向演示视频的动态呈现工具。你不需要再把原始素材交给动效设计师去补缩放、光标润色或样式化背景，Recordly 可以在一个地方免费完成整套流程。
+NekoCut 是一款桌面应用，用于录制并编辑屏幕内容，内置面向演示视频的动态呈现工具。你不需要再把原始素材交给动效设计师去补缩放、光标润色或样式化背景，NekoCut 可以在一个地方免费完成整套流程。
 
-Recordly 支持：
+NekoCut 支持：
 
 - **macOS** 14.0+
 - **Windows** 10 Build 19041+
@@ -38,21 +38,21 @@ Recordly 支持：
 # 核心功能
 
 ## 自动缩放、光标润色与样式化画面
-Recordly 可以根据操作自动强调重点区域，平滑光标运动，添加动态效果，并将最终画面放进带有壁纸、纯色、渐变、模糊、留白和阴影的样式化边框中。
+NekoCut 可以根据操作自动强调重点区域，平滑光标运动，添加动态效果，并将最终画面放进带有壁纸、纯色、渐变、模糊、留白和阴影的样式化边框中。
 
 <p>
-  <img src="./docs/media/feature1.gif" width="450" alt="Recordly cursor and zoom demo video">
+  <img src="./docs/media/feature1.gif" width="450" alt="NekoCut cursor and zoom demo video">
 </p>
 
 ## 动态摄像头气泡叠加
 你可以把摄像头素材作为气泡叠加层加入画面，使用预设位置或自定义坐标摆放，支持镜像、阴影和圆角调节，也可以让它跟随缩放变化，保证动态镜头里整体视觉更协调。
 
 <p>
-  <img src="./docs/media/feature2.gif" width="450" alt="Recordly webcam overlay demo video">
+  <img src="./docs/media/feature2.gif" width="450" alt="NekoCut webcam overlay demo video">
 </p>
 
 ## 为演示设计的时间线编辑
-使用拖拽式时间线工具处理缩放、裁剪、变速区域、注释、额外音频区域以及裁切感知编辑，并将工作保存为 `.recordly` 项目文件，之后随时回来继续编辑。
+使用拖拽式时间线工具处理缩放、裁剪、变速区域、注释、额外音频区域以及裁切感知编辑，并将工作保存为 `.nekocut` 项目文件，之后随时回来继续编辑。
 
 <p>
   <img width="450" alt="timeline editor" src="https://github.com/user-attachments/assets/3692bd8f-7b8d-4a93-b696-d17c828487ea" />
@@ -60,9 +60,9 @@ Recordly 可以根据操作自动强调重点区域，平滑光标运动，添�
 
 ## 扩展与市场
 
-Recordly 拥有一个社区驱动的扩展系统。任何人都可以构建和发布扩展来为 Recordly 添加新功能，例如光标点击音效、设备边框、浏览器模拟外壳、壁纸、渲染钩子、设置面板等等。
+NekoCut 拥有一个社区驱动的扩展系统。任何人都可以构建和发布扩展来为 NekoCut 添加新功能，例如光标点击音效、设备边框、浏览器模拟外壳、壁纸、渲染钩子、设置面板等等。
 
-浏览并安装社区扩展：[Recordly 扩展市场](https://marketplace.recordly.dev/extensions)。
+浏览并安装社区扩展：[NekoCut 扩展市场](https://marketplace.nekocut.dev/extensions)。
 
 ---
 
@@ -74,7 +74,7 @@ Recordly 拥有一个社区驱动的扩展系统。任何人都可以构建和�
 - 录制完成后直接进入编辑器
 - 录制麦克风音频和系统音频
 - 在支持的平台上使用原生捕获后端
-- 从保存的 `.recordly` 项目文件继续编辑
+- 从保存的 `.nekocut` 项目文件继续编辑
 - 可在应用中打开已有录像或已有项目文件
 
 ### 时间线与编辑
@@ -149,15 +149,15 @@ Recordly 拥有一个社区驱动的扩展系统。任何人都可以构建和�
 # 截图
 
 <p align="center">
-  <img src="https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png" width="700" alt="Recordly recording interface screenshot">
+  <img src="https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png" width="700" alt="NekoCut recording interface screenshot">
 </p>
 
 <p align="center">
-  <img src="https://i.postimg.cc/pLSMfrTM/Screenshot-2026-04-30-at-5-11-45-pm.png" width="700" alt="Recordly editor screenshot">
+  <img src="https://i.postimg.cc/pLSMfrTM/Screenshot-2026-04-30-at-5-11-45-pm.png" width="700" alt="NekoCut editor screenshot">
 </p>
 
 <p align="center">
-  <img src="https://i.postimg.cc/Zn9VY6bg/Screenshot-2026-03-18-at-6-32-59-pm.png" width="700" alt="Recordly timeline screenshot">
+  <img src="https://i.postimg.cc/Zn9VY6bg/Screenshot-2026-03-18-at-6-32-59-pm.png" width="700" alt="NekoCut timeline screenshot">
 </p>
 
 ---
@@ -168,19 +168,19 @@ Recordly 拥有一个社区驱动的扩展系统。任何人都可以构建和�
 
 预构建发布版本请见：
 
-https://github.com/webadderallorg/Recordly/releases
+https://github.com/webadderallorg/NekoCut/releases
 
 ---
 
 ## Arch Linux / Manjaro（yay）
 
-可通过 AUR 安装（[recordly-bin](https://aur.archlinux.org/packages/recordly-bin)）：
+可通过 AUR 安装（[nekocut-bin](https://aur.archlinux.org/packages/nekocut-bin)）：
 
 ```bash
-yay -S recordly-bin
+yay -S nekocut-bin
 ```
 
-PKGBUILD、桌面入口、发布同步，以及可选的**本地源码打包**都维护在 **[recordly-aur](https://github.com/firtoz/recordly-aur)** 中，因此这个仓库本身不需要承担 Arch 发布维护工作。关于维护者联系方式和软件包更新方式，请查看该仓库或 AUR 软件包页面。
+PKGBUILD、桌面入口、发布同步，以及可选的**本地源码打包**都维护在 **[nekocut-aur](https://github.com/firtoz/nekocut-aur)** 中，因此这个仓库本身不需要承担 Arch 发布维护工作。关于维护者联系方式和软件包更新方式，请查看该仓库或 AUR 软件包页面。
 
 ---
 
@@ -201,8 +201,8 @@ sudo apt install build-essential cmake libx11-dev libxtst-dev libxrandr-dev libx
 ### 步骤
 
 ```bash
-git clone https://github.com/webadderallorg/Recordly.git recordly
-cd recordly
+git clone https://github.com/webadderallorg/NekoCut.git nekocut
+cd nekocut
 npm install
 npm run dev
 ```
@@ -228,7 +228,7 @@ npm run build
 可以用以下命令移除隔离标记：
 
 ```bash
-xattr -rd com.apple.quarantine /Applications/Recordly.app
+xattr -rd com.apple.quarantine /Applications/NekoCut.app
 ```
 
 ---
@@ -250,7 +250,7 @@ xattr -rd com.apple.quarantine /Applications/Recordly.app
 
 ## 录制
 
-1. 启动 Recordly。
+1. 启动 NekoCut。
 2. 选择屏幕或窗口。
 3. 选择麦克风和系统音频选项。
 4. 开始录制。
@@ -267,7 +267,7 @@ xattr -rd com.apple.quarantine /Applications/Recordly.app
 - 添加额外音频区域
 - 裁切画面并选择宽高比
 
-你可以随时将工作保存为 `.recordly` 项目。
+你可以随时将工作保存为 `.nekocut` 项目。
 
 ## 导出
 
@@ -284,7 +284,7 @@ xattr -rd com.apple.quarantine /Applications/Recordly.app
 
 ### 光标捕获
 
-Recordly 会在录制画面上渲染一个经过美化的光标叠加层，但真实系统光标是否能被隐藏仍取决于平台能力。
+NekoCut 会在录制画面上渲染一个经过美化的光标叠加层，但真实系统光标是否能被隐藏仍取决于平台能力。
 
 **macOS**
 - ScreenCaptureKit 可以较干净地排除真实光标。
@@ -314,7 +314,7 @@ Recordly 会在录制画面上渲染一个经过美化的光标叠加层，但�
 
 # 工作原理
 
-Recordly 将平台相关的捕获层与基于渲染器的编辑、导出流程结合在一起。
+NekoCut 将平台相关的捕获层与基于渲染器的编辑、导出流程结合在一起。
 
 **捕获**
 - Electron 负责录制流程和应用级控制
@@ -332,7 +332,7 @@ Recordly 将平台相关的捕获层与基于渲染器的编辑、导出流程�
 - 预览使用的同一套场景逻辑会被用于导出 MP4 或 GIF
 
 **项目**
-- `.recordly` 文件会保存源媒体路径和编辑器状态，方便后续继续编辑
+- `.nekocut` 文件会保存源媒体路径和编辑器状态，方便后续继续编辑
 
 ---
 
@@ -358,7 +358,7 @@ Recordly 将平台相关的捕获层与基于渲染器的编辑、导出流程�
 
 问题反馈和功能建议：
 
-https://github.com/webadderallorg/Recordly/issues
+https://github.com/webadderallorg/NekoCut/issues
 
 欢迎提交 Pull Request。
 
@@ -384,7 +384,7 @@ https://github.com/webadderallorg/Recordly/issues
 
 # 许可证
 
-Recordly 基于 **AGPL 3.0** 发布。
+NekoCut 基于 **AGPL 3.0** 发布。
 
 ---
 
@@ -392,7 +392,7 @@ Recordly 基于 **AGPL 3.0** 发布。
 
 ## 鸣谢
 
-Recordly 最初是从 [OpenScreen](https://github.com/siddharthvaddem/openscreen) 分叉而来，之后已逐步演变为一个不同的项目。
+NekoCut 最初是从 [OpenScreen](https://github.com/siddharthvaddem/openscreen) 分叉而来，之后已逐步演变为一个不同的项目。
 
 创建者  
 [@webadderall](https://x.com/webadderall)

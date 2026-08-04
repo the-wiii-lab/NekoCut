@@ -50,8 +50,8 @@
 			"checkingTitle": "Controleren op updates...",
 			"downloadingTitle": "Update downloaden...",
 			"errorTitle": "Updatecontrole mislukt. Klik om opnieuw te proberen.",
-			"upToDateTitle": "Recordly {{version}} is up-to-date.",
-			"availableTitle": "Recordly {{version}} is beschikbaar.",
+			"upToDateTitle": "NekoCut {{version}} is up-to-date.",
+			"availableTitle": "NekoCut {{version}} is beschikbaar.",
 			"availableGenericTitle": "Er is een update beschikbaar."
 		}
 	},
@@ -67,10 +67,10 @@
 		"share": "Delen"
 	},
 	"permissions": {
-		"screenRecordingNeeded": "Recordly heeft toestemming voor schermopname nodig voordat je begint. Systeeminstellingen zijn geopend. Schakel het in, sluit Recordly en open het opnieuw.",
-		"screenRecordingMissing": "Toestemming voor schermopname ontbreekt nog. Systeeminstellingen zijn opnieuw geopend. Schakel het in, sluit Recordly en open het opnieuw voordat je opneemt.",
-		"accessibilityNeeded": "Recordly heeft ook toegankelijkheidstoestemming nodig voor cursortracking. Systeeminstellingen zijn geopend. Schakel het in, sluit Recordly en open het opnieuw.",
-		"accessibilityMissing": "Toegankelijkheidstoestemming ontbreekt nog. Systeeminstellingen zijn opnieuw geopend. Schakel het in, sluit Recordly en open het opnieuw voordat je opneemt.",
+		"screenRecordingNeeded": "NekoCut heeft toestemming voor schermopname nodig voordat je begint. Systeeminstellingen zijn geopend. Schakel het in, sluit NekoCut en open het opnieuw.",
+		"screenRecordingMissing": "Toestemming voor schermopname ontbreekt nog. Systeeminstellingen zijn opnieuw geopend. Schakel het in, sluit NekoCut en open het opnieuw voordat je opneemt.",
+		"accessibilityNeeded": "NekoCut heeft ook toegankelijkheidstoestemming nodig voor cursortracking. Systeeminstellingen zijn geopend. Schakel het in, sluit NekoCut en open het opnieuw.",
+		"accessibilityMissing": "Toegankelijkheidstoestemming ontbreekt nog. Systeeminstellingen zijn opnieuw geopend. Schakel het in, sluit NekoCut en open het opnieuw voordat je opneemt.",
 		"selectSource": "Selecteer een bron om op te nemen",
 		"systemAudioUnavailable": "Systeemaudio is niet beschikbaar voor deze bron. De opname gaat verder zonder systeemaudio.",
 		"microphoneDenied": "Microfoontoegang is geweigerd. De opname gaat verder zonder microfoonaudio.",

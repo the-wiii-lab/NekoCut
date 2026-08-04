@@ -66,7 +66,7 @@
 		"connectedZoomDuration": "連接縮放時間",
 		"connectedZoomEasing": "連接平移曲線",
 		"zoomEasingOptions": {
-			"recordly": "Recordly",
+			"nekocut": "NekoCut",
 			"glide": "滑行",
 			"smooth": "平滑",
 			"snappy": "俐落",

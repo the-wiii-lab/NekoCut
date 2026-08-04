@@ -43,7 +43,7 @@ describe("getSmokeExportConfig", () => {
 				"&smokeMaxEncodeQueue=8" +
 				"&smokeMaxDecodeQueue=9" +
 				"&smokeMaxPendingFrames=10" +
-				"&smokeProject=/tmp/project.recordly" +
+				"&smokeProject=/tmp/project.nekocut" +
 				"&smokeQuality=source" +
 				"&smokeFps=60",
 		);
@@ -64,7 +64,7 @@ describe("getSmokeExportConfig", () => {
 			maxEncodeQueue: 8,
 			maxDecodeQueue: 9,
 			maxPendingFrames: 10,
-			projectPath: "/tmp/project.recordly",
+			projectPath: "/tmp/project.nekocut",
 			quality: "source",
 			fps: 60,
 		});

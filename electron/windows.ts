@@ -19,7 +19,7 @@ const APP_ROOT = path.join(electronWindowsDir, "..");
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
 const RENDERER_DIST = path.join(APP_ROOT, "dist");
 const WINDOW_ICON_FILENAME =
-	process.platform === "darwin" ? "recordlymac-512.png" : "recordly-512.png";
+	process.platform === "darwin" ? "nekocutmac-512.png" : "nekocut-512.png";
 const WINDOW_ICON_PATH = path.join(
 	process.env.VITE_PUBLIC || RENDERER_DIST,
 	"app-icons",
@@ -875,7 +875,7 @@ export function createEditorWindow(): BrowserWindow {
 		resizable: true,
 		alwaysOnTop: false,
 		skipTaskbar: false,
-		title: "Recordly",
+		title: "NekoCut",
 		show: false,
 		backgroundColor: "#000000",
 		webPreferences: {

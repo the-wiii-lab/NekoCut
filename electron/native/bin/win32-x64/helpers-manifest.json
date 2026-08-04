@@ -17,15 +17,15 @@
       "sourceFingerprint": "6ad1b8b50bb336f2a48937b06f5ec56d90b6ab4a3e56a4bca278cf67a5d3e52e",
       "updatedAt": "2026-05-07T15:22:18.173Z"
     },
-    "recordly-gpu-export": {
-      "binaryName": "recordly-gpu-export.exe",
+    "nekocut-gpu-export": {
+      "binaryName": "nekocut-gpu-export.exe",
       "binarySha256": "4cb3a293fd36f718af55906820d9b3fd78babc855888c2e248f0b918ec1aff3c",
       "sourceDir": "electron/native/gpu-export-probe",
       "sourceFingerprint": "743b386a5f1bbcc99cec5465c3de228d2b045061dead31dfcbf25cf6a1e61de5",
       "updatedAt": "2026-05-07T20:13:48.585Z"
     },
-    "recordly-nvidia-cuda-compositor": {
-      "binaryName": "recordly-nvidia-cuda-compositor.exe",
+    "nekocut-nvidia-cuda-compositor": {
+      "binaryName": "nekocut-nvidia-cuda-compositor.exe",
       "binarySha256": "250a3f8cac7c6ea38a873434d23d4b2be7d6555e42cc0b405aa26f774169159c",
       "sourceDir": "electron/native/nvidia-cuda-compositor",
       "sourceFingerprint": "de1219228ce326e96d1f4815a3763b10d5f235cc1286bc6542c99707a85d5947",

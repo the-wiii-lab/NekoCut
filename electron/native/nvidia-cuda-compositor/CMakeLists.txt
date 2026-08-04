@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(recordly_nvidia_cuda_compositor LANGUAGES CXX CUDA)
+project(nekocut_nvidia_cuda_compositor LANGUAGES CXX CUDA)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -19,29 +19,29 @@ if(NOT EXISTS "${NVCODEC_DIR}")
   message(FATAL_ERROR "NVIDIA Video Codec SDK NvCodec directory not found: ${NVCODEC_DIR}. Set RECORDLY_NVIDIA_VIDEO_CODEC_SDK_ROOT.")
 endif()
 
-add_executable(recordly-nvidia-cuda-compositor
+add_executable(nekocut-nvidia-cuda-compositor
   src/main.cu
   "${NVCODEC_DIR}/NvDecoder/NvDecoder.cpp"
   "${NVCODEC_DIR}/NvEncoder/NvEncoder.cpp"
   "${NVCODEC_DIR}/NvEncoder/NvEncoderCuda.cpp"
 )
 
-target_include_directories(recordly-nvidia-cuda-compositor PRIVATE
+target_include_directories(nekocut-nvidia-cuda-compositor PRIVATE
   "${NVIDIA_SAMPLES_DIR}"
   "${NVCODEC_DIR}"
 )
 
-target_compile_definitions(recordly-nvidia-cuda-compositor PRIVATE
+target_compile_definitions(nekocut-nvidia-cuda-compositor PRIVATE
   NOMINMAX
   WIN32_LEAN_AND_MEAN
 )
 
 find_package(CUDAToolkit REQUIRED)
-target_link_libraries(recordly-nvidia-cuda-compositor PRIVATE
+target_link_libraries(nekocut-nvidia-cuda-compositor PRIVATE
   CUDA::cuda_driver
   "${NVCODEC_DIR}/Lib/x64/nvcuvid.lib"
 )
 
-set_target_properties(recordly-nvidia-cuda-compositor PROPERTIES
+set_target_properties(nekocut-nvidia-cuda-compositor PROPERTIES
   CUDA_SEPARABLE_COMPILATION OFF
 )

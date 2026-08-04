@@ -1,15 +1,15 @@
 {
-	"name": "recordly",
-	"productName": "Recordly",
+	"name": "nekocut",
+	"productName": "NekoCut",
 	"description": "A free, creator-focused screen recorder with auto-zoom, cursor effects, backgrounds, annotations, and more - built for polished videos out of the box.",
-	"author": "webadderall",
-	"homepage": "https://github.com/webadderallorg/Recordly",
+	"author": "the-wiii-lab",
+	"homepage": "https://github.com/webadderallorg/NekoCut",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/webadderallorg/Recordly.git"
+		"url": "https://github.com/webadderallorg/NekoCut.git"
 	},
 	"bugs": {
-		"url": "https://github.com/webadderallorg/Recordly/issues"
+		"url": "https://github.com/webadderallorg/NekoCut/issues"
 	},
 	"private": true,
 	"version": "1.3.5-beta.2",

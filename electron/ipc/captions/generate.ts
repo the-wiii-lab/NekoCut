@@ -78,7 +78,7 @@ export async function resolveWhisperExecutablePath(preferredPath?: string | null
 	}
 
 	throw new Error(
-		"No Whisper runtime was found. Recordly looked for a bundled binary first, then checked common system install locations.",
+		"No Whisper runtime was found. NekoCut looked for a bundled binary first, then checked common system install locations.",
 	);
 }
 
@@ -205,7 +205,7 @@ export async function generateAutoCaptionsFromVideo(options: {
 
 	const tempBase = path.join(
 		app.getPath("temp"),
-		`recordly-captions-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+		`nekocut-captions-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
 	);
 	const wavPath = `${tempBase}.wav`;
 	const outputBase = `${tempBase}-whisper`;

@@ -127,7 +127,7 @@ export interface ProjectEditorState {
 	cursorSway: number;
 	borderRadius: number;
 	padding: Padding;
-	/** Selected frame ID (e.g. "recordly.frames/browser-dark"), or null for none */
+	/** Selected frame ID (e.g. "nekocut.frames/browser-dark"), or null for none */
 	frame: string | null;
 	cropRegion: CropRegion;
 	zoomRegions: ZoomRegion[];
@@ -214,7 +214,7 @@ function normalizeZoomTransitionEasing(
 	value: unknown,
 	fallback: ZoomTransitionEasing,
 ): ZoomTransitionEasing {
-	return value === "recordly" ||
+	return value === "nekocut" ||
 		value === "glide" ||
 		value === "smooth" ||
 		value === "snappy" ||

@@ -9,13 +9,13 @@ import {
 const TRUSTED_DOCUMENT_BASE_URLS = [
 	"http://localhost:5173/",
 	"http://127.0.0.1:43127/",
-	"file:///C:/Program%20Files/Recordly/resources/app.asar/dist/index.html",
+	"file:///C:/Program%20Files/NekoCut/resources/app.asar/dist/index.html",
 ];
 
 const DEV_HUD_URL = "http://localhost:5173/?windowType=hud-overlay";
 const PACKAGED_HUD_URL = "http://127.0.0.1:43127/?windowType=hud-overlay";
 const FILE_HUD_URL =
-	"file:///C:/Program%20Files/Recordly/resources/app.asar/dist/index.html?windowType=hud-overlay";
+	"file:///C:/Program%20Files/NekoCut/resources/app.asar/dist/index.html?windowType=hud-overlay";
 
 describe("isTrustedCaptureDocumentUrl", () => {
 	it.each([
@@ -23,7 +23,7 @@ describe("isTrustedCaptureDocumentUrl", () => {
 		PACKAGED_HUD_URL,
 		FILE_HUD_URL,
 		`${DEV_HUD_URL}#microphone`,
-	])("accepts a Recordly HUD document: %s", (candidateUrl) => {
+	])("accepts a NekoCut HUD document: %s", (candidateUrl) => {
 		expect(isTrustedCaptureDocumentUrl(candidateUrl, TRUSTED_DOCUMENT_BASE_URLS)).toBe(true);
 	});
 
@@ -39,11 +39,11 @@ describe("isTrustedCaptureDocumentUrl", () => {
 		"http://user@localhost:5173/?windowType=hud-overlay",
 		"https://localhost:5173/?windowType=hud-overlay",
 		"http://127.0.0.1:43127/nested/?windowType=hud-overlay",
-		"file:///C:/Program%20Files/Recordly/resources/app.asar/dist/other.html?windowType=hud-overlay",
-		"file:///C:/Program%20Files/Recordly/resources/app.asar/dist/index.html/child?windowType=hud-overlay",
-		"data:text/html,recordly?windowType=hud-overlay",
+		"file:///C:/Program%20Files/NekoCut/resources/app.asar/dist/other.html?windowType=hud-overlay",
+		"file:///C:/Program%20Files/NekoCut/resources/app.asar/dist/index.html/child?windowType=hud-overlay",
+		"data:text/html,nekocut?windowType=hud-overlay",
 		"not a url",
-	])("rejects a non-Recordly capture document: %s", (candidateUrl) => {
+	])("rejects a non-NekoCut capture document: %s", (candidateUrl) => {
 		expect(isTrustedCaptureDocumentUrl(candidateUrl, TRUSTED_DOCUMENT_BASE_URLS)).toBe(false);
 	});
 
@@ -184,7 +184,7 @@ describe("shouldGrantDisplayCapture", () => {
 	it.each([
 		["another BrowserWindow", { isTrustedCaptureWindow: false }],
 		["a subframe", { isMainFrame: false }],
-		["a non-Recordly document", { currentDocumentUrl: "https://example.com/" }],
+		["a non-NekoCut document", { currentDocumentUrl: "https://example.com/" }],
 		["a mismatched origin", { securityOrigin: "http://127.0.0.1:43127" }],
 		["a malformed origin", { securityOrigin: "not an origin" }],
 		["an origin with a path", { securityOrigin: "http://localhost:5173/other" }],

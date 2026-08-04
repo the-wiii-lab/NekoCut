@@ -13,7 +13,7 @@ interface ThemeContextValue {
 	toggleTheme: () => void;
 }
 
-const THEME_STORAGE_KEY = "recordly.theme";
+const THEME_STORAGE_KEY = "nekocut.theme";
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 

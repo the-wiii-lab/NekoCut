@@ -77,7 +77,7 @@ export function registerExtensionIpcHandlers(): void {
 		const result = await dialog.showOpenDialog(window!, {
 			title: "Select Extension Folder",
 			properties: ["openDirectory"],
-			message: "Select a folder containing a recordly-extension.json manifest",
+			message: "Select a folder containing a nekocut-extension.json manifest",
 		});
 
 		if (result.canceled || result.filePaths.length === 0) {
@@ -88,7 +88,7 @@ export function registerExtensionIpcHandlers(): void {
 		if (!info) {
 			return {
 				success: false,
-				reason: "Invalid extension: missing or invalid recordly-extension.json",
+				reason: "Invalid extension: missing or invalid nekocut-extension.json",
 			};
 		}
 

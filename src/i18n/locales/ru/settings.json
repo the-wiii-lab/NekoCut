@@ -85,7 +85,7 @@
 		"connectedZoomDuration": "Длительность интервала",
 		"connectedZoomEasing": "Кривая панорамирования",
 		"zoomEasingOptions": {
-			"recordly": "Recordly",
+			"nekocut": "NekoCut",
 			"glide": "Плавно",
 			"smooth": "Мягко",
 			"snappy": "Резко",

@@ -115,7 +115,7 @@
 	},
 	"nativeCaptureUnavailable": {
 		"title": "Nada está roto, pero no podremos renderizar una superposición de cursor animada.",
-		"description": "Tu dispositivo no es compatible con la captura nativa. Esto puede deberse a varias razones que todavía no hemos identificado. Recordly seguirá funcionando, pero hará imposible el suavizado del cursor.",
+		"description": "Tu dispositivo no es compatible con la captura nativa. Esto puede deberse a varias razones que todavía no hemos identificado. NekoCut seguirá funcionando, pero hará imposible el suavizado del cursor.",
 		"confirm": "Entendido"
 	},
 	"exportStatus": {

@@ -25,7 +25,7 @@ function getQueueKey(projectPath: string): string {
 }
 
 function createTemporaryPath(parentDir: string, label: string): string {
-	return path.join(parentDir, `.recordly-${label}-${process.pid}-${randomUUID()}.tmp`);
+	return path.join(parentDir, `.nekocut-${label}-${process.pid}-${randomUUID()}.tmp`);
 }
 
 async function getExistingFileMode(filePath: string): Promise<number | undefined> {

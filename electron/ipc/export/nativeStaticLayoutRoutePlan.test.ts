@@ -20,7 +20,7 @@ const cudaProbe: NvidiaCudaExportCapabilityProbe = {
 	packagedAutoCandidateEnabled: true,
 	packagedAutoCandidateActive: true,
 	windowsGpuCompositorEnabled: true,
-	wrapperPath: "C:\\Recordly\\run-mp4-pipeline.mjs",
+	wrapperPath: "C:\\NekoCut\\run-mp4-pipeline.mjs",
 	hasNvidiaGpu: true,
 	audioMode: "copy-source",
 	audioSkipReason: null,
@@ -31,7 +31,7 @@ const cudaProbe: NvidiaCudaExportCapabilityProbe = {
 const d3d11Probe: WindowsD3D11ExportCapabilityProbe = {
 	platform: "win32",
 	windowsGpuCompositorEnabled: true,
-	helperPath: "C:\\Recordly\\recordly-gpu-export.exe",
+	helperPath: "C:\\NekoCut\\nekocut-gpu-export.exe",
 	adapterIndexOverride: null,
 	preferHighPerformanceAdapter: true,
 	nvencSdkRequested: false,

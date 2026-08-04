@@ -20,7 +20,7 @@ let targetCaptureFPS = 60
 let maxInlineAudioTailExtension = CMTime(seconds: 2.0, preferredTimescale: 600)
 
 final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
-	private let queue = DispatchQueue(label: "recordly.screencapturekit.video")
+	private let queue = DispatchQueue(label: "nekocut.screencapturekit.video")
 	private var assetWriter: AVAssetWriter?
 	private var videoInput: AVAssetWriterInput?
 	private var systemAudioWriter: AVAssetWriter?
@@ -58,11 +58,11 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 
 	func startCapture(configJSON: String) async throws {
 		guard !isRecording else {
-			throw NSError(domain: "RecordlyCapture", code: 1, userInfo: [NSLocalizedDescriptionKey: "Recording is already in progress"])
+			throw NSError(domain: "NekoCutCapture", code: 1, userInfo: [NSLocalizedDescriptionKey: "Recording is already in progress"])
 		}
 
 		guard let data = configJSON.data(using: .utf8) else {
-			throw NSError(domain: "RecordlyCapture", code: 2, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON input"])
+			throw NSError(domain: "NekoCutCapture", code: 2, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON input"])
 		}
 
 		let config = try JSONDecoder().decode(CaptureConfig.self, from: data)
@@ -101,7 +101,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 		if let windowId = config.windowId {
 			trackedWindowId = windowId
 			guard let window = availableContent.windows.first(where: { $0.windowID == windowId }) else {
-				throw NSError(domain: "RecordlyCapture", code: 3, userInfo: [NSLocalizedDescriptionKey: "Window not found"])
+				throw NSError(domain: "NekoCutCapture", code: 3, userInfo: [NSLocalizedDescriptionKey: "Window not found"])
 			}
 
 			filter = SCContentFilter(desktopIndependentWindow: window)
@@ -121,7 +121,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 			trackedWindowId = nil
 			let displayId = config.displayId ?? CGMainDisplayID()
 			guard let display = availableContent.displays.first(where: { $0.displayID == displayId }) else {
-				throw NSError(domain: "RecordlyCapture", code: 4, userInfo: [NSLocalizedDescriptionKey: "Display not found"])
+				throw NSError(domain: "NekoCutCapture", code: 4, userInfo: [NSLocalizedDescriptionKey: "Display not found"])
 			}
 
 			filter = SCContentFilter(display: display, excludingApplications: [], exceptingWindows: [])
@@ -149,7 +149,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 		firstMicrophoneSampleTime = nil
 
 		guard let assistant = AVOutputSettingsAssistant(preset: .preset3840x2160) else {
-			throw NSError(domain: "RecordlyCapture", code: 5, userInfo: [NSLocalizedDescriptionKey: "Unable to create output settings assistant"])
+			throw NSError(domain: "NekoCutCapture", code: 5, userInfo: [NSLocalizedDescriptionKey: "Unable to create output settings assistant"])
 		}
 
 		assistant.sourceVideoFormat = try CMVideoFormatDescription(
@@ -159,7 +159,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 		)
 
 		guard var outputSettings = assistant.videoSettings else {
-			throw NSError(domain: "RecordlyCapture", code: 6, userInfo: [NSLocalizedDescriptionKey: "Output settings unavailable"])
+			throw NSError(domain: "NekoCutCapture", code: 6, userInfo: [NSLocalizedDescriptionKey: "Output settings unavailable"])
 		}
 
 		outputSettings[AVVideoWidthKey] = outputWidth
@@ -169,7 +169,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 		videoInput.expectsMediaDataInRealTime = true
 
 		guard let assetWriter = assetWriter, assetWriter.canAdd(videoInput) else {
-			throw NSError(domain: "RecordlyCapture", code: 7, userInfo: [NSLocalizedDescriptionKey: "Unable to add video writer input"])
+			throw NSError(domain: "NekoCutCapture", code: 7, userInfo: [NSLocalizedDescriptionKey: "Unable to add video writer input"])
 		}
 
 		assetWriter.add(videoInput)
@@ -188,7 +188,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 
 		if writesSystemAudioToSeparateTrack {
 			guard let systemAudioOutputPath = config.systemAudioOutputPath, !systemAudioOutputPath.isEmpty else {
-				throw NSError(domain: "RecordlyCapture", code: 11, userInfo: [NSLocalizedDescriptionKey: "Missing system audio output path for audio capture"])
+				throw NSError(domain: "NekoCutCapture", code: 11, userInfo: [NSLocalizedDescriptionKey: "Missing system audio output path for audio capture"])
 			}
 
 			let systemAudioURL = URL(fileURLWithPath: systemAudioOutputPath)
@@ -197,7 +197,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 			systemAudioInput.expectsMediaDataInRealTime = true
 
 			guard systemAudioWriter.canAdd(systemAudioInput) else {
-				throw NSError(domain: "RecordlyCapture", code: 12, userInfo: [NSLocalizedDescriptionKey: "Unable to add system audio writer input"])
+				throw NSError(domain: "NekoCutCapture", code: 12, userInfo: [NSLocalizedDescriptionKey: "Unable to add system audio writer input"])
 			}
 
 			systemAudioWriter.add(systemAudioInput)
@@ -205,7 +205,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 			self.systemAudioInput = systemAudioInput
 
 			guard systemAudioWriter.startWriting() else {
-				throw NSError(domain: "RecordlyCapture", code: 13, userInfo: [NSLocalizedDescriptionKey: systemAudioWriter.error?.localizedDescription ?? "Unable to start system audio writing"])
+				throw NSError(domain: "NekoCutCapture", code: 13, userInfo: [NSLocalizedDescriptionKey: systemAudioWriter.error?.localizedDescription ?? "Unable to start system audio writing"])
 			}
 
 			systemAudioWriter.startSession(atSourceTime: .zero)
@@ -213,7 +213,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 
 		if writesMicrophoneToSeparateTrack {
 			guard let microphoneOutputPath = config.microphoneOutputPath, !microphoneOutputPath.isEmpty else {
-				throw NSError(domain: "RecordlyCapture", code: 14, userInfo: [NSLocalizedDescriptionKey: "Missing microphone output path for microphone capture"])
+				throw NSError(domain: "NekoCutCapture", code: 14, userInfo: [NSLocalizedDescriptionKey: "Missing microphone output path for microphone capture"])
 			}
 
 			let microphoneURL = URL(fileURLWithPath: microphoneOutputPath)
@@ -223,7 +223,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 			microphoneInput.expectsMediaDataInRealTime = true
 
 			guard microphoneWriter.canAdd(microphoneInput) else {
-				throw NSError(domain: "RecordlyCapture", code: 15, userInfo: [NSLocalizedDescriptionKey: "Unable to add microphone writer input"])
+				throw NSError(domain: "NekoCutCapture", code: 15, userInfo: [NSLocalizedDescriptionKey: "Unable to add microphone writer input"])
 			}
 
 			microphoneWriter.add(microphoneInput)
@@ -231,7 +231,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 			self.microphoneOnlyInput = microphoneInput
 
 			guard microphoneWriter.startWriting() else {
-				throw NSError(domain: "RecordlyCapture", code: 16, userInfo: [NSLocalizedDescriptionKey: microphoneWriter.error?.localizedDescription ?? "Unable to start microphone audio writing"])
+				throw NSError(domain: "NekoCutCapture", code: 16, userInfo: [NSLocalizedDescriptionKey: microphoneWriter.error?.localizedDescription ?? "Unable to start microphone audio writing"])
 			}
 
 			microphoneWriter.startSession(atSourceTime: .zero)
@@ -246,7 +246,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 		if capturesMicrophone {
 			guard let microphoneOutputType = SCStreamOutputType(rawValue: microphoneOutputTypeRawValue) else {
 				throw NSError(
-					domain: "RecordlyCapture",
+					domain: "NekoCutCapture",
 					code: 17,
 					userInfo: [NSLocalizedDescriptionKey: "Microphone stream output type is unavailable"]
 				)
@@ -256,7 +256,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 		try await stream.startCapture()
 
 		guard assetWriter.startWriting() else {
-			throw NSError(domain: "RecordlyCapture", code: 8, userInfo: [NSLocalizedDescriptionKey: assetWriter.error?.localizedDescription ?? "Unable to start video writing"])
+			throw NSError(domain: "NekoCutCapture", code: 8, userInfo: [NSLocalizedDescriptionKey: assetWriter.error?.localizedDescription ?? "Unable to start video writing"])
 		}
 
 		assetWriter.startSession(atSourceTime: .zero)
@@ -277,7 +277,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 
 	func stopCapture() async throws -> String {
 		guard isRecording else {
-			throw NSError(domain: "RecordlyCapture", code: 9, userInfo: [NSLocalizedDescriptionKey: "No recording in progress"])
+			throw NSError(domain: "NekoCutCapture", code: 9, userInfo: [NSLocalizedDescriptionKey: "No recording in progress"])
 		}
 
 		return try await finishCapture()
@@ -593,7 +593,7 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 
 final class RecorderService {
 	private let recorder = ScreenCaptureRecorder()
-	private let queue = DispatchQueue(label: "recordly.screencapturekit.commands")
+	private let queue = DispatchQueue(label: "nekocut.screencapturekit.commands")
 	private let completionGroup = DispatchGroup()
 
 	func start(configJSON: String) {

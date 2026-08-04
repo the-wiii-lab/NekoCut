@@ -72,7 +72,7 @@ describe("exportCaptionSidecars", () => {
 	});
 
 	it("writes requested caption sidecars when the filesystem succeeds", async () => {
-		const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "recordly-sidecar-test-"));
+		const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "nekocut-sidecar-test-"));
 		const videoPath = path.join(tempDir, "clip.mp4");
 
 		try {

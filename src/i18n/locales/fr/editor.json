@@ -115,7 +115,7 @@
 	},
 	"nativeCaptureUnavailable": {
 		"title": "Rien n'est cassé, mais nous ne pourrons pas afficher une superposition animée du curseur.",
-		"description": "Votre appareil ne prend pas en charge la capture native. Cela peut arriver pour plusieurs raisons que nous n'avons pas encore identifiées. Recordly continuera de fonctionner, mais le lissage du curseur sera impossible.",
+		"description": "Votre appareil ne prend pas en charge la capture native. Cela peut arriver pour plusieurs raisons que nous n'avons pas encore identifiées. NekoCut continuera de fonctionner, mais le lissage du curseur sera impossible.",
 		"confirm": "D'accord"
 	},
 	"exportStatus": {

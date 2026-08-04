@@ -1,7 +1,7 @@
 {
 	"app": {
-		"name": "Recordly",
-		"editorTitle": "Recordly Editor",
+		"name": "NekoCut",
+		"editorTitle": "NekoCut Editor",
 		"subtitle": "Запись экрана и редактирование видео",
 		"language": "Язык",
 		"manageRecordings": "Открыть папку с записями"

@@ -50,8 +50,8 @@
 			"checkingTitle": "Vérification des mises à jour...",
 			"downloadingTitle": "Téléchargement de la mise à jour...",
 			"errorTitle": "Échec de la vérification des mises à jour. Cliquez pour réessayer.",
-			"upToDateTitle": "Recordly {{version}} est à jour.",
-			"availableTitle": "Recordly {{version}} est disponible.",
+			"upToDateTitle": "NekoCut {{version}} est à jour.",
+			"availableTitle": "NekoCut {{version}} est disponible.",
 			"availableGenericTitle": "Une mise à jour est disponible."
 		}
 	},
@@ -67,10 +67,10 @@
 		"share": "Partager"
 	},
 	"permissions": {
-		"screenRecordingNeeded": "Recordly nécessite l’autorisation d’enregistrement d’écran avant de commencer. Les paramètres système ont été ouverts. Après l’avoir activée, quittez et relancez Recordly.",
-		"screenRecordingMissing": "L’autorisation d’enregistrement d’écran est toujours manquante. Les paramètres système ont été ouverts à nouveau. Activez-la, puis quittez et relancez Recordly avant d’enregistrer.",
-		"accessibilityNeeded": "Recordly nécessite également l’autorisation d’accessibilité pour le suivi du curseur. Les paramètres système ont été ouverts. Après l’avoir activée, quittez et relancez Recordly.",
-		"accessibilityMissing": "L’autorisation d’accessibilité est toujours manquante. Les paramètres système ont été ouverts à nouveau. Activez-la, puis quittez et relancez Recordly avant d’enregistrer.",
+		"screenRecordingNeeded": "NekoCut nécessite l’autorisation d’enregistrement d’écran avant de commencer. Les paramètres système ont été ouverts. Après l’avoir activée, quittez et relancez NekoCut.",
+		"screenRecordingMissing": "L’autorisation d’enregistrement d’écran est toujours manquante. Les paramètres système ont été ouverts à nouveau. Activez-la, puis quittez et relancez NekoCut avant d’enregistrer.",
+		"accessibilityNeeded": "NekoCut nécessite également l’autorisation d’accessibilité pour le suivi du curseur. Les paramètres système ont été ouverts. Après l’avoir activée, quittez et relancez NekoCut.",
+		"accessibilityMissing": "L’autorisation d’accessibilité est toujours manquante. Les paramètres système ont été ouverts à nouveau. Activez-la, puis quittez et relancez NekoCut avant d’enregistrer.",
 		"selectSource": "Veuillez sélectionner une source à enregistrer",
 		"systemAudioUnavailable": "L’audio système n’est pas disponible pour cette source. L’enregistrement continuera sans audio système.",
 		"microphoneDenied": "L’accès au microphone a été refusé. L’enregistrement continuera sans audio du microphone.",

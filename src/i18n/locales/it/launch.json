@@ -50,8 +50,8 @@
 			"checkingTitle": "Verifica aggiornamenti in corso...",
 			"downloadingTitle": "Download dell'aggiornamento in corso...",
 			"errorTitle": "Verifica aggiornamenti non riuscita. Clicca per riprovare.",
-			"upToDateTitle": "Recordly {{version}} è aggiornato.",
-			"availableTitle": "Recordly {{version}} è disponibile.",
+			"upToDateTitle": "NekoCut {{version}} è aggiornato.",
+			"availableTitle": "NekoCut {{version}} è disponibile.",
 			"availableGenericTitle": "È disponibile un aggiornamento."
 		}
 	},
@@ -67,10 +67,10 @@
 		"share": "Condividi"
 	},
 	"permissions": {
-		"screenRecordingNeeded": "Recordly necessita del permesso di Registrazione schermo prima di iniziare. Sono state aperte le Impostazioni di sistema. Dopo averlo abilitato, esci e riapri Recordly.",
-		"screenRecordingMissing": "Manca ancora il permesso di Registrazione schermo. Le Impostazioni di sistema sono state riaperte. Abilitalo, poi esci e riapri Recordly prima di registrare.",
-		"accessibilityNeeded": "Recordly necessita anche del permesso di Accessibilità per il tracciamento del cursore. Sono state aperte le Impostazioni di sistema. Dopo averlo abilitato, esci e riapri Recordly.",
-		"accessibilityMissing": "Manca ancora il permesso di Accessibilità. Le Impostazioni di sistema sono state riaperte. Abilitalo, poi esci e riapri Recordly prima di registrare.",
+		"screenRecordingNeeded": "NekoCut necessita del permesso di Registrazione schermo prima di iniziare. Sono state aperte le Impostazioni di sistema. Dopo averlo abilitato, esci e riapri NekoCut.",
+		"screenRecordingMissing": "Manca ancora il permesso di Registrazione schermo. Le Impostazioni di sistema sono state riaperte. Abilitalo, poi esci e riapri NekoCut prima di registrare.",
+		"accessibilityNeeded": "NekoCut necessita anche del permesso di Accessibilità per il tracciamento del cursore. Sono state aperte le Impostazioni di sistema. Dopo averlo abilitato, esci e riapri NekoCut.",
+		"accessibilityMissing": "Manca ancora il permesso di Accessibilità. Le Impostazioni di sistema sono state riaperte. Abilitalo, poi esci e riapri NekoCut prima di registrare.",
 		"selectSource": "Seleziona una sorgente da registrare",
 		"systemAudioUnavailable": "L'audio di sistema non è disponibile per questa sorgente. La registrazione continuerà senza audio di sistema.",
 		"microphoneDenied": "L'accesso al microfono è stato negato. La registrazione continuerà senza audio del microfono.",

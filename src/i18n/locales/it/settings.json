@@ -85,7 +85,7 @@
 		"connectedZoomDuration": "Durata zoom connessi",
 		"connectedZoomEasing": "Curva pan connesso",
 		"zoomEasingOptions": {
-			"recordly": "Recordly",
+			"nekocut": "NekoCut",
 			"glide": "Glide",
 			"smooth": "Fluido",
 			"snappy": "Rapido",

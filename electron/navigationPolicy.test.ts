@@ -21,7 +21,7 @@ describe("normalizeExternalHttpUrl", () => {
 	it.each([
 		"",
 		"not a URL",
-		"file:///tmp/recordly.html",
+		"file:///tmp/nekocut.html",
 		"data:text/html,hello",
 		"javascript:alert(1)",
 		"mailto:security@example.com",
@@ -44,8 +44,8 @@ describe("isInternalRendererTarget", () => {
 		["http://localhost:5173/?windowType=editor", "http://localhost:5173/editor?reload=1"],
 		["http://127.0.0.1:43123/?windowType=editor", "http://127.0.0.1:43123/assets/index.js"],
 		[
-			"file:///opt/Recordly/dist/index.html?windowType=editor",
-			"file:///opt/Recordly/dist/index.html?windowType=hud-overlay#status",
+			"file:///opt/NekoCut/dist/index.html?windowType=editor",
+			"file:///opt/NekoCut/dist/index.html?windowType=hud-overlay#status",
 		],
 	])("identifies the current renderer origin/file", (currentUrl, targetUrl) => {
 		expect(isInternalRendererTarget(currentUrl, targetUrl)).toBe(true);
@@ -54,10 +54,10 @@ describe("isInternalRendererTarget", () => {
 	it.each([
 		["http://localhost:5173/?windowType=editor", "http://localhost.example.com:5173/"],
 		["http://localhost:5173/", "http://localhost:5174/"],
-		["https://recordly.example/", "http://recordly.example/"],
-		["https://recordly.example/", "https://user:pass@recordly.example/"],
-		["file:///opt/Recordly/dist/index.html", "file:///etc/passwd"],
-		["file:///opt/Recordly/dist/index.html", "data:text/html,hello"],
+		["https://nekocut.example/", "http://nekocut.example/"],
+		["https://nekocut.example/", "https://user:pass@nekocut.example/"],
+		["file:///opt/NekoCut/dist/index.html", "file:///etc/passwd"],
+		["file:///opt/NekoCut/dist/index.html", "data:text/html,hello"],
 		["not a URL", "https://example.com/"],
 	])("distinguishes a target outside the current renderer", (currentUrl, targetUrl) => {
 		expect(isInternalRendererTarget(currentUrl, targetUrl)).toBe(false);
@@ -100,12 +100,12 @@ describe("navigation event handlers", () => {
 		const preventDefault = vi.fn();
 		const openExternal = vi.fn(async () => undefined);
 		const handler = createWillNavigateHandler(
-			() => "file:///opt/Recordly/dist/index.html?windowType=editor",
+			() => "file:///opt/NekoCut/dist/index.html?windowType=editor",
 			openExternal,
 		);
 
 		handler({
-			url: "file:///opt/Recordly/dist/index.html?smokeExport=1",
+			url: "file:///opt/NekoCut/dist/index.html?smokeExport=1",
 			preventDefault,
 		});
 
@@ -131,7 +131,7 @@ describe("navigation event handlers", () => {
 		const preventDefault = vi.fn();
 		const openExternal = vi.fn(async () => undefined);
 		const handler = createWillNavigateHandler(
-			() => "file:///opt/Recordly/dist/index.html",
+			() => "file:///opt/NekoCut/dist/index.html",
 			openExternal,
 		);
 
@@ -211,7 +211,7 @@ describe("navigation event handlers", () => {
 	});
 
 	it("does not trust a renderer-mutated URL as an exact reload", () => {
-		let currentUrl = "file:///opt/Recordly/dist/index.html?windowType=editor";
+		let currentUrl = "file:///opt/NekoCut/dist/index.html?windowType=editor";
 		const on = vi.fn();
 		const webContents = {
 			getURL: () => currentUrl,
@@ -223,7 +223,7 @@ describe("navigation event handlers", () => {
 		hardenWebContentsNavigation(webContents, openExternal);
 
 		// history.replaceState() changes getURL() without crossing a document-navigation boundary.
-		currentUrl = "file:///opt/Recordly/dist/index.html?windowType=source-selector";
+		currentUrl = "file:///opt/NekoCut/dist/index.html?windowType=source-selector";
 		const willNavigate = on.mock.calls.find(([eventName]) => eventName === "will-navigate")?.[1];
 		if (typeof willNavigate !== "function") {
 			throw new Error("will-navigate handler was not registered");
@@ -255,7 +255,7 @@ describe("navigation event handlers", () => {
 			throw new Error("navigation handlers were not registered");
 		}
 
-		const loadedUrl = "file:///opt/Recordly/dist/index.html?windowType=editor";
+		const loadedUrl = "file:///opt/NekoCut/dist/index.html?windowType=editor";
 		didNavigate({}, loadedUrl);
 		const preventDefault = vi.fn();
 		willNavigate({ url: loadedUrl, preventDefault });

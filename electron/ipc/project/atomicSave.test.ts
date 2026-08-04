@@ -10,8 +10,8 @@ describe("writeProjectFileAtomically", () => {
 	let projectPath: string;
 
 	beforeEach(async () => {
-		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "recordly-atomic-project-"));
-		projectPath = path.join(tempDir, "demo.recordly");
+		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "nekocut-atomic-project-"));
+		projectPath = path.join(tempDir, "demo.nekocut");
 	});
 
 	afterEach(async () => {

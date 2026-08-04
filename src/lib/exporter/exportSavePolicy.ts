@@ -39,8 +39,8 @@ export function describeBlockedInMemoryExportSave({
 }): string {
 	const normalizedExtension = normalizeExportExtension(extension) || "export";
 	if (isExportTooLargeForInMemorySave(blobSize)) {
-		return `The ${normalizedExtension.toUpperCase()} export is too large to save through the legacy in-memory path. Please retry the export so Recordly can save it through the temp-file streaming path.`;
+		return `The ${normalizedExtension.toUpperCase()} export is too large to save through the legacy in-memory path. Please retry the export so NekoCut can save it through the temp-file streaming path.`;
 	}
 
-	return `The ${normalizedExtension.toUpperCase()} export could not be saved through the temp-file streaming path, and Recordly will not fall back to the legacy in-memory path for MP4 exports. Please retry the export.`;
+	return `The ${normalizedExtension.toUpperCase()} export could not be saved through the temp-file streaming path, and NekoCut will not fall back to the legacy in-memory path for MP4 exports. Please retry the export.`;
 }

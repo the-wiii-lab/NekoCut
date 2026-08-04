@@ -1,7 +1,7 @@
 {
 	"app": {
-		"name": "Recordly",
-		"editorTitle": "Recordly 편집기",
+		"name": "NekoCut",
+		"editorTitle": "NekoCut 편집기",
 		"subtitle": "화면 녹화 및 편집",
 		"language": "언어",
 		"manageRecordings": "녹화 폴더 열기"

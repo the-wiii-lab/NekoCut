@@ -18,7 +18,7 @@ type ExportStreamSession = {
 const exportStreamSessions = new Map<string, ExportStreamSession>();
 
 const EXTENSION_ALLOWLIST = /^[a-z0-9]{1,8}$/;
-const SESSION_DIR_PREFIX = "recordly-export-";
+const SESSION_DIR_PREFIX = "nekocut-export-";
 
 // Paths that the export pipeline itself produced (stream temp files plus any
 // successor temp files returned by main-process helpers such as
@@ -44,7 +44,7 @@ export function isOwnedExportPath(candidate: string): boolean {
 }
 
 function generateStreamId() {
-	return `recordly-export-stream-${randomUUID()}`;
+	return `nekocut-export-stream-${randomUUID()}`;
 }
 
 export async function openExportStream(options?: { extension?: string }): Promise<{

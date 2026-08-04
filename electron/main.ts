@@ -239,7 +239,7 @@ let defaultTrayIcon: ReturnType<typeof getTrayIcon> | null = null;
 let recordingTrayIcon: ReturnType<typeof getTrayIcon> | null = null;
 
 function getPlatformAppIconFilename(size: 32 | 128 | 512) {
-	const baseName = process.platform === "darwin" ? "recordlymac" : "recordly";
+	const baseName = process.platform === "darwin" ? "nekocutmac" : "nekocut";
 	return `app-icons/${baseName}-${size}.png`;
 }
 
@@ -558,22 +558,22 @@ function syncDockIcon() {
 function getUpdateNotificationTitle(payload: UpdateToastPayload) {
 	switch (payload.phase) {
 		case "available":
-			return `Recordly ${payload.version} is available`;
+			return `NekoCut ${payload.version} is available`;
 		case "downloading":
-			return `Downloading Recordly ${payload.version}`;
+			return `Downloading NekoCut ${payload.version}`;
 		case "ready":
-			return `Recordly ${payload.version} is ready`;
+			return `NekoCut ${payload.version} is ready`;
 		case "error":
-			return `Recordly ${payload.version} needs attention`;
+			return `NekoCut ${payload.version} needs attention`;
 	}
 }
 
 function getUpdateNotificationBody(payload: UpdateToastPayload) {
 	switch (payload.phase) {
 		case "available":
-			return "Click to install the update and restart Recordly.";
+			return "Click to install the update and restart NekoCut.";
 		case "downloading":
-			return "Recordly is downloading the update and will restart when it is ready.";
+			return "NekoCut is downloading the update and will restart when it is ready.";
 		case "ready":
 			return "Click to install the downloaded update and restart.";
 		case "error":
@@ -748,7 +748,7 @@ ipcMain.handle("check-for-app-updates", async () => {
 function updateTrayMenu(recording: boolean = false) {
 	if (!tray) return;
 	const trayIcon = recording ? getRecordingTrayIcon() : getDefaultTrayIcon();
-	const trayToolTip = recording ? `Recording: ${selectedSourceName}` : "Recordly";
+	const trayToolTip = recording ? `Recording: ${selectedSourceName}` : "NekoCut";
 	const menuTemplate = recording
 		? [
 				{
@@ -915,7 +915,7 @@ app.on("second-instance", () => {
 // Register all IPC handlers when app is ready
 app.whenReady().then(async () => {
 	if (process.platform === "win32") {
-		app.setAppUserModelId("dev.recordly.app");
+		app.setAppUserModelId("dev.nekocut.app");
 	}
 
 	session.defaultSession.setPermissionCheckHandler(
@@ -957,7 +957,7 @@ app.whenReady().then(async () => {
 		},
 	);
 
-	// Recordly does not use WebHID, Web Serial, or WebUSB. Do not grant devices by default.
+	// NekoCut does not use WebHID, Web Serial, or WebUSB. Do not grant devices by default.
 	session.defaultSession.setDevicePermissionHandler(() => false);
 
 	if (process.platform === "darwin") {
