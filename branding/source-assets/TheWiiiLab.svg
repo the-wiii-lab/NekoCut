@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">The Wiii Lab logo</title>
+  <desc id="desc">A W-shaped research glyph with three probe terminals.</desc>
+  <rect width="1024" height="1024" rx="224" fill="#F2EFE7"/>
+  <g fill="none" stroke="#1D1B18" stroke-width="64" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M220 388c72 76 99 350 210 350 56 0 72-78 82-154 10 76 26 154 82 154 111 0 138-274 210-350"/>
+    <path d="M512 584V286"/>
+    <path d="M430 650c-44-96-70-197-70-286"/>
+    <path d="M594 650c44-96 70-197 70-286"/>
+  </g>
+  <circle cx="360" cy="294" r="35" fill="#1D1B18"/>
+  <circle cx="664" cy="294" r="35" fill="#1D1B18"/>
+  <circle cx="512" cy="204" r="39" fill="#2563EB"/>
+</svg>

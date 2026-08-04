@@ -1,8 +1,8 @@
 <div align="center">
 
-# NekoCut
+<img src="./branding/nekocut-readme-hero.png" width="100%" alt="NekoCut — make beautiful screen recordings" />
 
-### Make beautiful screen recordings — free & open source
+### Free, open-source screen recording and editing for creators
 
 A creator-focused screen recorder and editor with auto-zoom, silky cursor effects, dynamic webcam overlays, styled backgrounds, annotations, and a drag-and-drop timeline. Built for polished demo videos out of the box.
 
@@ -13,6 +13,8 @@ A creator-focused screen recorder and editor with auto-zoom, silky cursor effect
 [Download](#installation) · [Features](#features) · [Build from Source](#build-from-source) · [Website](https://the-wiii-lab.github.io/NekoCut/)
 
 </div>
+
+> See the [NekoCut brand system](branding/BRAND.md) for canonical logos, colors, and usage guidance.
 
 ---
 
