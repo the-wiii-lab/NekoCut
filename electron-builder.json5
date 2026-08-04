@@ -41,7 +41,7 @@
   "publish": [
     {
       "provider": "github",
-      "owner": "webadderall",
+      "owner": "the-wiii-lab",
       "repo": "NekoCut",
       "tagNamePrefix": "v",
       "publishAutoUpdate": true

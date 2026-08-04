@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NekoCut — Free Open-Source Screen Recorder & Editor</title>
+<meta name="description" content="NekoCut is a free, open-source screen recorder and editor with auto-zoom, silky cursor effects, dynamic webcam overlays, styled backgrounds, annotations, and a drag-and-drop timeline. macOS, Windows, Linux.">
+<meta name="author" content="The Wiii Lab">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="canonical" href="https://the-wiii-lab.github.io/NekoCut/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="NekoCut — Make beautiful screen recordings, free & open source">
+<meta property="og:description" content="A creator-focused screen recorder and editor with auto-zoom, silky cursor effects, dynamic webcam overlays, styled frames, and a drag-and-drop timeline.">
+<meta property="og:url" content="https://the-wiii-lab.github.io/NekoCut/">
+<meta property="og:image" content="https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png">
+<meta property="og:site_name" content="NekoCut">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NekoCut — Free Open-Source Screen Recorder & Editor">
+<meta name="twitter:description" content="Auto-zoom, silky cursor, dynamic webcam, styled frames, drag-and-drop timeline. Free & open source.">
+<meta name="twitter:image" content="https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png">
+
+<!-- Favicon: cat silhouette -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0f'/%3E%3Cpath d='M50 24 L36 14 L33 32 C24 36 18 46 18 58 C18 74 32 84 50 84 C68 84 82 74 82 58 C82 46 76 36 67 32 L64 14 Z' fill='%23f59e0b'/%3E%3Ccircle cx='40' cy='54' r='4' fill='%230a0a0f'/%3E%3Ccircle cx='60' cy='54' r='4' fill='%230a0a0f'/%3E%3Cpath d='M44 64 Q50 70 56 64' stroke='%230a0a0f' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NekoCut",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "macOS, Windows, Linux",
+  "description": "A free, open-source screen recorder and editor with auto-zoom, silky cursor effects, dynamic webcam overlays, styled backgrounds, annotations, and a drag-and-drop timeline.",
+  "url": "https://the-wiii-lab.github.io/NekoCut/",
+  "downloadUrl": "https://github.com/the-wiii-lab/NekoCut/releases",
+  "codeRepository": "https://github.com/the-wiii-lab/NekoCut",
+  "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "The Wiii Lab", "url": "https://github.com/the-wiii-lab" },
+  "screenshot": [
+    "https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png",
+    "https://i.postimg.cc/pLSMfrTM/Screenshot-2026-04-30-at-5-11-45-pm.png",
+    "https://i.postimg.cc/Zn9VY6bg/Screenshot-2026-03-18-at-6-32-59-pm.png"
+  ]
+}
+</script>
+
+<style>
+/* ===== Design System ===== */
+:root{
+  --bg:#0a0a0f;
+  --bg-2:#101018;
+  --bg-3:#16161f;
+  --surface:#14141c;
+  --surface-2:#1c1c28;
+  --border:rgba(255,255,255,.07);
+  --border-strong:rgba(255,255,255,.14);
+  --text:#f4f4f6;
+  --text-dim:#a0a0b0;
+  --text-mute:#6b6b7a;
+  --accent:#f59e0b;
+  --accent-2:#fb923c;
+  --accent-3:#f97316;
+  --accent-glow:rgba(245,158,11,.35);
+  --coral:#ff6b5b;
+  --radius:16px;
+  --radius-sm:10px;
+  --radius-lg:28px;
+  --maxw:1180px;
+  --font-head:'Space Grotesk','SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:var(--accent);color:#0a0a0f}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+
+/* ===== Layout ===== */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{position:relative}
+
+/* ===== Nav ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s var(--ease),border-color .4s var(--ease),backdrop-filter .4s;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(10,10,15,.72);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+.brand-mark{width:30px;height:30px;flex:none}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:.92rem;color:var(--text-dim);transition:color .25s;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  background:var(--accent);color:#0a0a0f;font-weight:600;font-size:.9rem;
+  padding:9px 18px;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--accent-glow)}
+.nav-burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+.nav-burger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ===== Hero ===== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+  padding:120px 24px 80px;
+}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-glow{
+  position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;
+  animation:drift 18s ease-in-out infinite;
+}
+.g1{width:560px;height:560px;background:radial-gradient(circle,var(--accent),transparent 70%);top:-120px;left:50%;transform:translateX(-50%)}
+.g2{width:420px;height:420px;background:radial-gradient(circle,var(--coral),transparent 70%);bottom:-80px;right:8%;animation-delay:-6s;opacity:.35}
+.g3{width:380px;height:380px;background:radial-gradient(circle,var(--accent-3),transparent 70%);bottom:10%;left:5%;animation-delay:-12s;opacity:.3}
+@keyframes drift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(40px,-30px) scale(1.08)}
+  66%{transform:translate(-30px,20px) scale(.95)}
+}
+.hero-grain{
+  position:absolute;inset:0;z-index:1;opacity:.04;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;opacity:.4;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000,transparent);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000,transparent);
+}
+.hero-content{position:relative;z-index:2;max-width:880px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
+  color:var(--accent);font-size:.82rem;font-weight:600;
+  padding:7px 16px;border-radius:999px;margin-bottom:28px;
+  letter-spacing:.01em;
+}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{
+  font-size:clamp(2.8rem,8vw,6rem);
+  line-height:.98;letter-spacing:-.04em;margin-bottom:24px;
+}
+.hero h1 .grad{
+  background:linear-gradient(120deg,var(--accent) 0%,var(--accent-2) 40%,var(--coral) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero p.lead{
+  font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--text-dim);
+  max-width:620px;margin:0 auto 40px;line-height:1.55;
+}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-head);font-weight:600;font-size:1rem;
+  padding:15px 30px;border-radius:999px;cursor:pointer;border:none;
+  transition:transform .3s var(--ease),box-shadow .3s,background .3s;
+}
+.btn-primary{background:var(--accent);color:#0a0a0f}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px var(--accent-glow)}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--text);border:1px solid var(--border-strong)}
+.btn-ghost:hover{transform:translateY(-3px);background:rgba(255,255,255,.09);border-color:var(--accent)}
+.btn svg{width:18px;height:18px}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center}
+.stat .num{font-family:var(--font-head);font-size:1.9rem;font-weight:700;color:var(--accent);letter-spacing:-.02em}
+.stat .lbl{font-size:.8rem;color:var(--text-mute);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+
+/* hero mockup */
+.hero-mock{
+  position:relative;z-index:2;max-width:920px;margin:56px auto 0;
+  border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--border-strong);
+  box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(245,158,11,.08);
+  background:var(--bg-2);
+}
+.hero-mock img{width:100%;display:block}
+.mock-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;background:var(--bg-3);border-bottom:1px solid var(--border)}
+.mock-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.mock-bar i:nth-child(1){background:#ff5f57}
+.mock-bar i:nth-child(2){background:#febc2e}
+.mock-bar i:nth-child(3){background:#28c840}
+.mock-bar .mock-title{margin-left:12px;font-size:.78rem;color:var(--text-mute);font-family:var(--font-head)}
+
+/* ===== Section heading ===== */
+.sec-head{text-align:center;max-width:640px;margin:0 auto 64px}
+.sec-tag{
+  display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:16px;
+}
+.sec-head h2{font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:16px}
+.sec-head p{color:var(--text-dim);font-size:1.08rem}
+
+/* ===== Features ===== */
+.features{padding:120px 0}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat{
+  position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:32px 28px;overflow:hidden;
+  transition:transform .4s var(--ease),border-color .4s,background .4s;
+}
+.feat::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(245,158,11,.08),transparent 60%);
+}
+.feat:hover{transform:translateY(-6px);border-color:rgba(245,158,11,.3);background:var(--surface-2)}
+.feat:hover::before{opacity:1}
+.feat-icon{
+  width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.18);
+  margin-bottom:20px;position:relative;z-index:1;
+}
+.feat-icon svg{width:24px;height:24px;color:var(--accent)}
+.feat h3{font-size:1.2rem;margin-bottom:10px;position:relative;z-index:1}
+.feat p{color:var(--text-dim);font-size:.95rem;position:relative;z-index:1}
+.feat.feat-wide{grid-column:span 3;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.feat.feat-wide .feat-icon{margin-bottom:0}
+.feat.feat-wide p{margin:0}
+
+/* ===== How it works ===== */
+.how{padding:120px 0;background:var(--bg-2)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.step{position:relative}
+.step-num{
+  font-family:var(--font-head);font-size:.82rem;font-weight:700;color:var(--accent);
+  letter-spacing:.12em;margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.step-num::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-strong),transparent)}
+.step h3{font-size:1.5rem;margin-bottom:12px}
+.step p{color:var(--text-dim);margin-bottom:24px;font-size:.98rem}
+.step-shot{
+  border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);transition:transform .5s var(--ease),box-shadow .5s;
+}
+.step-shot:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.step-shot img{width:100%;display:block}
+
+/* ===== Showcase ===== */
+.showcase{padding:120px 0}
+.show-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:90px}
+.show-row:last-child{margin-bottom:0}
+.show-row.flip .show-text{order:2}
+.show-img{
+  border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-strong);
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.show-img img{width:100%;display:block;transition:transform .6s var(--ease)}
+.show-img:hover img{transform:scale(1.03)}
+.show-text h3{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px}
+.show-text p{color:var(--text-dim);font-size:1.05rem;margin-bottom:20px}
+.show-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.show-list li{display:flex;align-items:flex-start;gap:10px;color:var(--text-dim);font-size:.95rem}
+.show-list li svg{width:18px;height:18px;color:var(--accent);flex:none;margin-top:2px}
+
+/* ===== CTA band ===== */
+.cta-band{padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(245,158,11,.12),transparent 70%);
+}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-inner h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:20px}
+.cta-inner h2 .grad{background:linear-gradient(120deg,var(--accent),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-inner p{color:var(--text-dim);font-size:1.1rem;margin-bottom:36px}
+.platforms{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.platform{display:flex;align-items:center;gap:8px;color:var(--text-dim);font-size:.9rem;font-weight:500}
+.platform svg{width:20px;height:20px;color:var(--accent)}
+
+/* ===== FAQ ===== */
+.faq{padding:120px 0;background:var(--bg-2)}
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  margin-bottom:12px;background:var(--surface);overflow:hidden;
+  transition:border-color .3s;
+}
+.faq-item.open{border-color:rgba(245,158,11,.3)}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;color:var(--text);
+  font-family:var(--font-head);font-size:1.05rem;font-weight:600;
+  padding:22px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq-q .chev{width:20px;height:20px;color:var(--accent);flex:none;transition:transform .35s var(--ease)}
+.faq-item.open .chev{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq-a-inner{padding:0 24px 22px;color:var(--text-dim);font-size:.97rem;line-height:1.6}
+.faq-a a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* ===== Footer ===== */
+.footer{padding:80px 0 40px;border-top:1px solid var(--border)}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px}
+.footer-brand .brand{margin-bottom:16px}
+.footer-brand p{color:var(--text-dim);font-size:.92rem;max-width:280px}
+.footer-col h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-mute);margin-bottom:16px;font-family:var(--font-body);font-weight:600}
+.footer-col a{display:block;color:var(--text-dim);font-size:.92rem;margin-bottom:10px;transition:color .25s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px}
+.footer-bottom p{color:var(--text-mute);font-size:.85rem}
+.footer-bottom .made{display:flex;align-items:center;gap:8px}
+.footer-bottom .made svg{width:16px;height:16px;color:var(--coral)}
+
+/* ===== Reveal animation ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ===== Responsive ===== */
+@media(max-width:900px){
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .feat.feat-wide{grid-column:span 2;grid-template-columns:auto 1fr}
+  .steps{grid-template-columns:1fr;gap:48px}
+  .show-row{grid-template-columns:1fr;gap:32px}
+  .show-row.flip .show-text{order:0}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-brand{grid-column:span 2}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .nav-links.open{
+    display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;
+    background:rgba(10,10,15,.96);backdrop-filter:blur(18px);
+    padding:24px;gap:18px;border-bottom:1px solid var(--border);
+  }
+  .feat-grid{grid-template-columns:1fr}
+  .feat.feat-wide{grid-column:span 1;grid-template-columns:1fr}
+  .feat.feat-wide .feat-icon{margin-bottom:20px}
+  .hero-stats{gap:24px}
+  .footer-top{grid-template-columns:1fr}
+  .footer-brand{grid-column:span 1}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" rx="24" fill="#0a0a0f" stroke="#f59e0b" stroke-width="2"/>
+        <path d="M50 24 L36 14 L33 32 C24 36 18 46 18 58 C18 74 32 84 50 84 C68 84 82 74 82 58 C82 46 76 36 67 32 L64 14 Z" fill="#f59e0b"/>
+        <circle cx="40" cy="54" r="4" fill="#0a0a0f"/>
+        <circle cx="60" cy="54" r="4" fill="#0a0a0f"/>
+        <path d="M44 64 Q50 70 56 64" stroke="#0a0a0f" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+      NekoCut
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/the-wiii-lab/NekoCut" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <a href="https://github.com/the-wiii-lab/NekoCut/releases" target="_blank" rel="noopener" class="nav-cta">Download</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="top">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
+    <div class="hero-glow g3"></div>
+  </div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <span class="hero-badge reveal"><span class="dot"></span> Free &amp; open source · AGPLv3</span>
+    <h1 class="reveal d1">Make beautiful<br><span class="grad">screen recordings</span></h1>
+    <p class="lead reveal d2">A creator-focused screen recorder and editor with auto-zoom, silky cursor effects, dynamic webcam overlays, styled backgrounds, annotations, and a drag-and-drop timeline.</p>
+    <div class="hero-cta reveal d3">
+      <a href="https://github.com/the-wiii-lab/NekoCut/releases" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download free
+      </a>
+      <a href="https://github.com/the-wiii-lab/NekoCut" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8 0 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        View on GitHub
+      </a>
+    </div>
+    <div class="hero-stats reveal d4">
+      <div class="stat"><div class="num" data-count="100">0</div><div class="lbl">% Free</div></div>
+      <div class="stat"><div class="num" data-count="3">0</div><div class="lbl">Platforms</div></div>
+      <div class="stat"><div class="num" data-count="0">0</div><div class="lbl">Watermarks</div></div>
+      <div class="stat"><div class="num" data-count="9">0</div><div class="lbl">Core features</div></div>
+    </div>
+  </div>
+  <div class="hero-mock reveal d4">
+    <div class="mock-bar"><i></i><i></i><i></i><span class="mock-title">NekoCut — Recording</span></div>
+    <img src="https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png" alt="NekoCut recording interface showing screen capture with auto-zoom and cursor effects" loading="eager">
+  </div>
+</header>
+
+<!-- ===== Features ===== -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Features</span>
+      <h2>Everything you need to record like a pro</h2>
+      <p>Powerful capture and editing tools that usually live behind a paywall — here, they're all free and open source.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+        <h3>Auto-zoom</h3>
+        <p>The viewport intelligently follows your cursor activity, zooming in on the action so viewers never miss a detail. No manual keyframing required.</p>
+      </div>
+      <div class="feat reveal d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg></div>
+        <h3>Silky cursor</h3>
+        <p>Buttery cursor smoothing with motion blur, click bounce, and natural sway. Your pointer has never looked this polished on screen.</p>
+      </div>
+      <div class="feat reveal d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3>Dynamic webcam bubble</h3>
+        <p>A floating webcam overlay that scales and repositions with the zoom level, keeping your face present without obscuring the content.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <h3>Styled frames</h3>
+        <p>Wallpapers, gradients, blur, padding, and drop shadows wrap your recording in a premium frame. Match your brand in seconds.</p>
+      </div>
+      <div class="feat reveal d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="14" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/><rect x="16" y="9" width="5" height="6" rx="1"/></svg></div>
+        <h3>Timeline editor</h3>
+        <p>Drag-and-drop trims, speed regions, and annotations on a visual timeline. Edit as fast as you think — no rendering queue gymnastics.</p>
+      </div>
+      <div class="feat reveal d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3>Extensions marketplace</h3>
+        <p>A growing library of community-built add-ons. Install new effects, transitions, and export presets with a single click.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <h3>MP4 + GIF export</h3>
+        <p>Ship crisp MP4 video for tutorials and demos, or lightweight GIFs for docs and chat. Quality presets tuned for every destination.</p>
+      </div>
+      <div class="feat reveal d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Cross-platform</h3>
+        <p>Native builds for macOS, Windows, and Linux. Same features, same shortcuts, same buttery experience everywhere you work.</p>
+      </div>
+      <div class="feat feat-wide reveal d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div>
+          <h3>100% free — no paywalls, no watermarks</h3>
+          <p>NekoCut is licensed under AGPLv3 and will always be free. No premium tiers, no trial limits, no branded watermarks slapped on your exports. Just open-source software, built for creators.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How it works ===== -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">How it works</span>
+      <h2>Capture, edit, export</h2>
+      <p>Three steps from raw screen to polished share — no video degree required.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01 — Capture</div>
+        <h3>Record your screen</h3>
+        <p>Pick a window, a region, or the full display. Auto-zoom and silky cursor kick in live, so your raw footage already looks great.</p>
+        <div class="step-shot"><img src="https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png" alt="NekoCut capture interface" loading="lazy"></div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">02 — Edit</div>
+        <h3>Refine on the timeline</h3>
+        <p>Trim clips, add speed regions, drop in annotations, and style your frame. The drag-and-drop timeline keeps every change non-destructive.</p>
+        <div class="step-shot"><img src="https://i.postimg.cc/pLSMfrTM/Screenshot-2026-04-30-at-5-11-45-pm.png" alt="NekoCut editor interface" loading="lazy"></div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">03 — Export</div>
+        <h3>Ship MP4 or GIF</h3>
+        <p>Choose a quality preset and export. No watermark, no queue — just a clean file ready for YouTube, docs, or a Slack message.</p>
+        <div class="step-shot"><img src="https://i.postimg.cc/Zn9VY6bg/Screenshot-2026-03-18-at-6-32-59-pm.png" alt="NekoCut timeline and export" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Showcase ===== -->
+<section class="showcase" id="showcase">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Showcase</span>
+      <h2>Built for the details</h2>
+      <p>The little touches that turn a screen recording into something people actually want to watch.</p>
+    </div>
+    <div class="show-row reveal">
+      <div class="show-text">
+        <h3>Auto-zoom that follows the action</h3>
+        <p>NekoCut watches where your cursor goes and smoothly zooms in on the relevant region. It feels like a human editor is framing every moment — except it's automatic.</p>
+        <ul class="show-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Activity-aware zoom regions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Smooth easing between focuses</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Override manually anytime</li>
+        </ul>
+      </div>
+      <div class="show-img"><img src="https://i.postimg.cc/8CrQtGJf/Screenshot-2026-04-30-at-5-11-52-pm.png" alt="Auto-zoom following cursor activity" loading="lazy"></div>
+    </div>
+    <div class="show-row flip reveal">
+      <div class="show-text">
+        <h3>A timeline that thinks like you do</h3>
+        <p>Drag to trim, split with a keystroke, and paint speed regions directly on the track. Annotations snap into place, and every edit is reversible.</p>
+        <ul class="show-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Non-destructive drag-and-drop trims</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Per-region speed control</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Inline annotations &amp; callouts</li>
+        </ul>
+      </div>
+      <div class="show-img"><img src="https://i.postimg.cc/Zn9VY6bg/Screenshot-2026-03-18-at-6-32-59-pm.png" alt="Drag-and-drop timeline editor" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA band ===== -->
+<section class="cta-band">
+  <div class="wrap cta-inner reveal">
+    <h2>Ready to <span class="grad">make something beautiful?</span></h2>
+    <p>Download NekoCut free. No account, no watermark, no catch — just open-source software you actually own.</p>
+    <a href="https://github.com/the-wiii-lab/NekoCut/releases" target="_blank" rel="noopener" class="btn btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Get NekoCut free
+    </a>
+    <div class="platforms">
+      <span class="platform"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg> macOS</span>
+      <span class="platform"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5L10.4 4.5v7.1H3V5.5zm0 13l7.4 1v-7H3v6zm8.2 1.1l9.8 1.4v-8.5h-9.8v7.1zm0-15.2v7.3h9.8V3.1l-9.8 1.3z"/></svg> Windows</span>
+      <span class="platform"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c.5 2 1.5 3.5 3 4.5 1.5 1 3 1.5 4.5 1.5-.5 2-1.5 3.5-3 4.5-1.5 1-3 1.5-4.5 1.5.5-2 1.5-3.5 3-4.5-1.5-1-3-1.5-3-1.5.5-2 1.5-3.5 0-6zM5 12c0 4 2 7 5 8-1-2-1.5-4-1.5-6.5C8.5 13 9 14 10 15c-2-1-3.5-2.5-5-3zm9 8c3-1 5-4 5-8-1.5.5-3 2-5 3 1-1 1.5-2 1.5-3.5C15.5 16 15 18 14 20z"/></svg> Linux</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">FAQ</span>
+      <h2>Questions, answered</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">Is NekoCut really free? <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. NekoCut is licensed under <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPLv3</a> and is completely free — no paywalls, no premium tiers, no watermarks on your exports. The source code is public on <a href="https://github.com/the-wiii-lab/NekoCut" target="_blank" rel="noopener">GitHub</a>.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Which platforms are supported? <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">NekoCut runs natively on macOS, Windows, and Linux. Grab the build for your platform from the <a href="https://github.com/the-wiii-lab/NekoCut/releases" target="_blank" rel="noopener">releases page</a>.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">What can I export? <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">You can export crisp MP4 video for tutorials and demos, or lightweight GIFs for documentation and chat. Quality presets are tuned for common destinations like YouTube, docs, and social.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Does auto-zoom require manual keyframing? <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Auto-zoom follows your cursor activity automatically and eases between focus regions. You can always override or fine-tune manually on the timeline if you want full control.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Can I extend NekoCut with plugins? <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. The extensions marketplace hosts community-built add-ons for new effects, transitions, and export presets. Because the project is open source, you can also build and publish your own.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Who makes NekoCut? <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">NekoCut is built by <a href="https://github.com/the-wiii-lab" target="_blank" rel="noopener">The Wiii Lab</a> and a community of contributors. Pull requests, bug reports, and feature ideas are all welcome on GitHub.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="24" fill="#0a0a0f" stroke="#f59e0b" stroke-width="2"/>
+            <path d="M50 24 L36 14 L33 32 C24 36 18 46 18 58 C18 74 32 84 50 84 C68 84 82 74 82 58 C82 46 76 36 67 32 L64 14 Z" fill="#f59e0b"/>
+            <circle cx="40" cy="54" r="4" fill="#0a0a0f"/>
+            <circle cx="60" cy="54" r="4" fill="#0a0a0f"/>
+            <path d="M44 64 Q50 70 56 64" stroke="#0a0a0f" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          NekoCut
+        </a>
+        <p>Make beautiful screen recordings — free &amp; open source. Built for creators, owned by everyone.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="https://github.com/the-wiii-lab/NekoCut" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/the-wiii-lab/NekoCut/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPLv3 License</a>
+      </div>
+      <div class="footer-col">
+        <h4>Organization</h4>
+        <a href="https://github.com/the-wiii-lab" target="_blank" rel="noopener">The Wiii Lab</a>
+        <a href="https://github.com/the-wiii-lab/NekoCut/issues" target="_blank" rel="noopener">Report an issue</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2026</span> The Wiii Lab · Licensed under AGPLv3</p>
+      <p class="made">Made with <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> by The Wiii Lab</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  // Nav scroll state
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 20); }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Mobile menu
+  var burger = document.getElementById('burger');
+  var navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){ navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ navLinks.classList.remove('open'); }); });
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Animated counters
+  var counted = false;
+  function animateCount(el, target){
+    var dur = 1400, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target) + (target === 100 ? '' : '');
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = target + (target === 100 ? '' : '');
+    }
+    requestAnimationFrame(step);
+  }
+  var statsWrap = document.querySelector('.hero-stats');
+  if(statsWrap && 'IntersectionObserver' in window){
+    var sio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && !counted){
+          counted = true;
+          statsWrap.querySelectorAll('[data-count]').forEach(function(el){
+            animateCount(el, parseInt(el.getAttribute('data-count'), 10));
+          });
+          sio.disconnect();
+        }
+      });
+    }, {threshold:0.5});
+    sio.observe(statsWrap);
+  } else {
+    statsWrap && statsWrap.querySelectorAll('[data-count]').forEach(function(el){
+      el.textContent = el.getAttribute('data-count');
+    });
+  }
+
+  // Feature card mouse glow
+  document.querySelectorAll('.feat').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var item = q.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

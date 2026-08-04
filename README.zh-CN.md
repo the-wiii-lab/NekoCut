@@ -11,7 +11,7 @@
 
 ### 无需额外剪辑，也能做出精致的屏幕录制。
 [NekoCut](https://github.com/the-wiii-lab/NekoCut) 是一款**开源屏幕录制器**和编辑器，适合制作**操作讲解、演示、产品视频**等内容。  
-**欢迎提交 PR。** [赞助](https://ko-fi.com/webadderall/goal?g=0)
+**欢迎提交 PR。** [赞助](https://ko-fi.com/theWiiiLab/goal?g=0)
 
 https://github.com/user-attachments/assets/9b66c71d-ac97-49ff-a0c9-63ac26edf2e4
 
@@ -168,7 +168,7 @@ NekoCut 拥有一个社区驱动的扩展系统。任何人都可以构建和发
 
 预构建发布版本请见：
 
-https://github.com/webadderallorg/NekoCut/releases
+https://github.com/the-wiii-lab/NekoCut/releases
 
 ---
 
@@ -201,7 +201,7 @@ sudo apt install build-essential cmake libx11-dev libxtst-dev libxrandr-dev libx
 ### 步骤
 
 ```bash
-git clone https://github.com/webadderallorg/NekoCut.git nekocut
+git clone https://github.com/the-wiii-lab/NekoCut.git nekocut
 cd nekocut
 npm install
 npm run dev
@@ -358,7 +358,7 @@ NekoCut 将平台相关的捕获层与基于渲染器的编辑、导出流程结
 
 问题反馈和功能建议：
 
-https://github.com/webadderallorg/NekoCut/issues
+https://github.com/the-wiii-lab/NekoCut/issues
 
 欢迎提交 Pull Request。
 
@@ -366,7 +366,7 @@ https://github.com/webadderallorg/NekoCut/issues
 
 # 支持者名单
 
-[![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/webadderall)
+[![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/theWiiiLab)
 
 - Tadees
 - buildwithfur
@@ -395,6 +395,6 @@ NekoCut 基于 **AGPL 3.0** 发布。
 NekoCut 最初是从 [OpenScreen](https://github.com/siddharthvaddem/openscreen) 分叉而来，之后已逐步演变为一个不同的项目。
 
 创建者  
-[@webadderall](https://x.com/webadderall)
+[@the-wiii-lab](https://github.com/the-wiii-lab)
 
 ---

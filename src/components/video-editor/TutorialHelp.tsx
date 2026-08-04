@@ -15,9 +15,9 @@ import { formatBinding, SHORTCUT_ACTIONS, SHORTCUT_LABELS } from "@/lib/shortcut
 import { formatShortcut } from "@/utils/platformUtils";
 import { toast } from "sonner";
 
-export const RECORDLY_ISSUES_URL = "https://github.com/webadderallorg/NekoCut/issues";
+export const RECORDLY_ISSUES_URL = "https://github.com/the-wiii-lab/NekoCut/issues";
 const RECORDLY_DISCORD_URL = "https://discord.gg/sdv2FBVNgE";
-const RECORDLY_X_URL = "https://x.com/webadderall";
+const RECORDLY_X_URL = "https://github.com/the-wiii-lab";
 const CONTACT_EMAIL = "youngchen3442@gmail.com";
 export const APP_HEADER_ACTION_BUTTON_CLASS = "h-7 px-2 text-xs text-muted-foreground hover:bg-foreground/10 hover:text-foreground transition-all gap-1.5";
 export const APP_HEADER_ICON_BUTTON_CLASS = "h-7 w-7 p-0 text-muted-foreground hover:bg-foreground/10 hover:text-foreground transition-all";
@@ -112,7 +112,7 @@ export function FeedbackDialog() {
 								<p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70">
 									{t("feedback.xLabel", "X")}
 								</p>
-								<p className="mt-1 text-sm font-medium text-foreground">@webadderall</p>
+								<p className="mt-1 text-sm font-medium text-foreground">@the-wiii-lab</p>
 							</div>
 							<Button
 								type="button"
