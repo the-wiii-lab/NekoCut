@@ -58,9 +58,10 @@
     fetch(API + "/releases/latest")
       .then(function (r) { if (!r.ok) throw 0; return r.json(); })
       .then(function (rel) {
-        document.querySelectorAll("[data-release-ver]").forEach(function (el) {
-          el.textContent = rel.tag_name;
-        });
+          releaseVersion = rel.tag_name;
+          document.querySelectorAll("[data-release-ver]").forEach(function (el) {
+            el.textContent = releaseVersion;
+          });
         var assets = { macos: null, windows: null, linux: null };
         (rel.assets || []).forEach(function (a) {
           var n = a.name.toLowerCase();
@@ -188,17 +189,6 @@
   // ===== INIT =====
   function init() {
     applyLang(currentLang);
-
-    // Split hero h1 into words
-    var h1 = document.querySelector(".hero h1");
-    if (h1) {
-      var words = h1.textContent.trim().split(/\s+/);
-      h1.innerHTML = words.map(function (w) {
-        var accent = w.toLowerCase().includes("beautiful") || w.includes("đẹp");
-        var inner = accent ? '<span class="accent">' + w + "</span>" : w;
-        return '<span class="word"><span>' + inner + "</span></span>";
-      }).join(" ");
-    }
 
     var t = document.getElementById("lang-toggle");
     if (t) t.addEventListener("click", toggleLang);
