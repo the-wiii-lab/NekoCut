@@ -76,12 +76,18 @@ img{max-width:100%;display:block}
 
 /* DOWNLOAD */
 .dl-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.dl-os{display:flex;flex-direction:column;align-items:center;gap:6px;padding:28px 40px;border:1px solid var(--bd);border-radius:var(--r);background:var(--bg3);transition:border-color .2s,background .2s;min-width:180px}
+.dl-os{display:flex;flex-direction:column;align-items:center;gap:6px;padding:28px 40px;border:1px solid var(--bd);border-radius:var(--r);background:var(--bg3);transition:border-color .2s,background .2s;min-width:190px;position:relative}
 .dl-os:hover{border-color:rgba(255,255,255,.15);background:var(--bg4)}
 .dl-os svg{width:28px;height:28px;color:var(--tx2)}
 .dl-os .nm{font-size:15px;font-weight:500;color:var(--tx)}
 .dl-os .vr{font-family:var(--m);font-size:12px;color:var(--tx3)}
 .dl-os .btn-d{margin-top:6px;font-size:13px;padding:8px 18px}
+.dl-badge{display:none;position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11px;font-weight:500;padding:3px 12px;border-radius:20px;white-space:nowrap;letter-spacing:.02em;z-index:1}
+.dl-os.recommended{border-color:rgba(37,99,235,.5);background:rgba(37,99,235,.06)}
+.dl-os.recommended .dl-badge{display:block}
+.dl-os .arch{font-family:var(--m);font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em}
+.dl-os .sz{font-family:var(--m);font-size:11px;color:var(--tx3)}
+.dl-meta{display:flex;gap:8px;align-items:center;min-height:14px}
 
 /* CORE */
 .core{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:96px}
@@ -162,22 +168,28 @@ NekoCut</a>
 <h2 style="margin-top:12px" data-i18n="download.title">Available for macOS, Windows, and Linux</h2>
 </div></div>
 <div class="dl-row" id="download-platforms">
-<div class="dl-os">
+<div class="dl-os" data-platform="macos">
+<span class="dl-badge" data-i18n="download.recommended">Recommended</span>
 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
 <span class="nm" data-i18n="download.macos">macOS</span>
 <span class="vr" data-release-ver>—</span>
+<div class="dl-meta"><span class="arch" data-arch></span><span class="sz" data-size></span></div>
 <a class="btn btn-p btn-d disabled" data-dl="macos" href="https://github.com/the-wiii-lab/NekoCut/releases"><span data-i18n="download.coming">Coming soon</span></a>
 </div>
-<div class="dl-os">
+<div class="dl-os" data-platform="windows">
+<span class="dl-badge" data-i18n="download.recommended">Recommended</span>
 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
 <span class="nm" data-i18n="download.windows">Windows</span>
 <span class="vr" data-release-ver>—</span>
+<div class="dl-meta"><span class="arch" data-arch></span><span class="sz" data-size></span></div>
 <a class="btn btn-p btn-d disabled" data-dl="windows" href="https://github.com/the-wiii-lab/NekoCut/releases"><span data-i18n="download.coming">Coming soon</span></a>
 </div>
-<div class="dl-os">
+<div class="dl-os" data-platform="linux">
+<span class="dl-badge" data-i18n="download.recommended">Recommended</span>
 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.886 1.052-2.13 2.825-2.61 4.66-.215.835-.246 1.74-.077 2.59.064.31.146.62.244.92-.234.034-.465.075-.692.118C2.79 17.962 0 19.5 0 22.5c0 .553.448 1 1 1h22c.553 0 1-.447 1-1 0-3-2.79-4.538-4.669-4.873-.228-.043-.458-.084-.692-.118.098-.3.18-.61.244-.92.169-.85.138-1.755-.077-2.59-.48-1.835-1.724-3.608-2.61-4.66-.75-1.067-.974-1.928-1.05-3.02-.065-1.491 1.056-5.965-3.17-6.298-.165-.013-.325-.021-.48-.021z"/></svg>
 <span class="nm" data-i18n="download.linux">Linux</span>
 <span class="vr" data-release-ver>—</span>
+<div class="dl-meta"><span class="arch" data-arch></span><span class="sz" data-size></span></div>
 <a class="btn btn-p btn-d disabled" data-dl="linux" href="https://github.com/the-wiii-lab/NekoCut/releases"><span data-i18n="download.coming">Coming soon</span></a>
 </div>
 </div>
@@ -268,7 +280,7 @@ NekoCut</a>
 </div>
 </footer>
 
-<script src="i18n.js?v=3"></script>
-<script src="app.js?v=3"></script>
+<script src="i18n.js?v=4"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

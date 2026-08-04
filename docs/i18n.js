@@ -17,6 +17,7 @@ var I18N = {
     "download.windows": "Windows",
     "download.linux": "Linux",
     "download.coming": "Coming soon",
+    "download.recommended": "Recommended",
 
     "features.label": "// features",
     "features.title.1": "Everything you need to",
@@ -89,6 +90,7 @@ var I18N = {
     "download.windows": "Windows",
     "download.linux": "Linux",
     "download.coming": "Sắp ra mắt",
+    "download.recommended": "Khuyên dùng",
 
     "features.label": "// tính năng",
     "features.title.1": "Tất cả những gì bạn cần",
