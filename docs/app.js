@@ -6,6 +6,21 @@
   var saved = localStorage.getItem("nekocut-lang");
   var browser = (navigator.language || "en").startsWith("vi") ? "vi" : "en";
   var currentLang = saved || browser;
+  var releaseVersion = null;
+
+  function splitHeroWords() {
+    var h1 = document.querySelector(".hero h1");
+    if (!h1) return;
+    var key = h1.getAttribute("data-i18n");
+    var dict = I18N[currentLang] || I18N.en;
+    var text = key && dict[key] ? dict[key] : h1.textContent.trim();
+    var words = text.trim().split(/\s+/);
+    h1.innerHTML = words.map(function (w) {
+      var accent = w.toLowerCase().includes("beautiful") || w.toLowerCase().includes("đẹp");
+      var inner = accent ? '<span class="accent">' + w + "</span>" : w;
+      return '<span class="word"><span>' + inner + "</span></span>";
+    }).join(" ");
+  }
 
   function applyLang(lang) {
     currentLang = lang;
@@ -18,6 +33,13 @@
     });
     var toggle = document.getElementById("lang-toggle");
     if (toggle) toggle.textContent = lang === "en" ? "VI" : "EN";
+    splitHeroWords();
+    if (!releaseVersion) {
+      var fallback = lang === "vi" ? "sắp ra mắt" : "coming soon";
+      document.querySelectorAll("[data-release-ver]").forEach(function (el) {
+        el.textContent = fallback;
+      });
+    }
   }
 
   function toggleLang() {
