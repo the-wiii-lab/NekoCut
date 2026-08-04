@@ -174,11 +174,6 @@
     updateCard("macos", mac, macArch);
     updateCard("windows", win, "x64");
     updateCard("linux", linux, "x64");
-
-    // Highlight the visitor's platform.
-    var os = detectOS();
-    var card = document.querySelector('[data-platform="' + os + '"]');
-    if (card) card.classList.add("recommended");
   }
 
   function updateCard(platform, asset, arch) {
@@ -198,6 +193,13 @@
       if (szEl) szEl.textContent = fmtSize(asset.size);
     }
     if (archEl && arch) archEl.textContent = arch;
+  }
+
+  // Highlight the visitor's platform (runs immediately, not dependent on release data).
+  function highlightOS() {
+    var os = detectOS();
+    var card = document.querySelector('[data-platform="' + os + '"]');
+    if (card) card.classList.add("recommended");
   }
 
   // ===== FAQ =====
@@ -225,6 +227,7 @@
     var t = document.getElementById("lang-toggle");
     if (t) t.addEventListener("click", toggleLang);
     initFAQ();
+    highlightOS();
     fetchStars();
     fetchRelease();
     setInterval(fetchStars, 300000);
