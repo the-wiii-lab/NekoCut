@@ -1,0 +1,15 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "nekocut-web",
+	"compatibility_date": "2026-08-04",
+	"workers_dev": true,
+	"routes": [
+		{
+			"pattern": "nekocut.holilihu.online",
+			"custom_domain": true
+		}
+	],
+	"assets": {
+		"directory": "./docs"
+	}
+}

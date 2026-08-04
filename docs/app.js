@@ -2,6 +2,8 @@
 (function () {
   "use strict";
 
+  var I18N = window.I18N;
+
   // ===== LANGUAGE =====
   var saved = localStorage.getItem("nekocut-lang");
   var browser = (navigator.language || "en").startsWith("vi") ? "vi" : "en";
@@ -20,7 +22,7 @@
     var toggle = document.getElementById("lang-toggle");
     if (toggle) toggle.textContent = lang === "en" ? "VI" : "EN";
     if (!releaseVersion) {
-      var fallback = lang === "vi" ? "sắp ra mắt" : "coming soon";
+      const fallback = lang === "vi" ? "sắp ra mắt" : "coming soon";
       document.querySelectorAll("[data-release-ver]").forEach(function (el) {
         el.textContent = fallback;
       });
@@ -46,17 +48,17 @@
   // Safari masks arm64 as "Intel" in UA, so UA alone is unreliable.
   function detectAppleSilicon() {
     try {
-      var c = document.createElement("canvas");
-      var gl = c.getContext("webgl") || c.getContext("experimental-webgl");
+      const c = document.createElement("canvas");
+      const gl = c.getContext("webgl") || c.getContext("experimental-webgl");
       if (!gl) return null;
-      var ext = gl.getExtension("WEBGL_debug_renderer_info");
+      const ext = gl.getExtension("WEBGL_debug_renderer_info");
       if (!ext) return null;
-      var r = (gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) || "").toLowerCase();
+      const r = (gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) || "").toLowerCase();
       if (r.indexOf("apple") >= 0 && r.indexOf("intel") < 0) return true;
       if (r.indexOf("intel") >= 0 && r.indexOf("apple") < 0) return false;
       if (r.indexOf("nvidia") >= 0 || r.indexOf("amd") >= 0 || r.indexOf("radeon") >= 0) return false;
       return null;
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -77,8 +79,8 @@
 
   // Try matchers in order; return first asset that matches any matcher.
   function selectAsset(assets, matchers) {
-    for (var i = 0; i < matchers.length; i++) {
-      for (var j = 0; j < assets.length; j++) {
+    for (let i = 0; i < matchers.length; i++) {
+      for (let j = 0; j < assets.length; j++) {
         if (matchers[i](assets[j])) return assets[j];
       }
     }
@@ -104,7 +106,9 @@
           el.textContent = fmtCount(c);
         });
       })
-      .catch(function () {});
+      .catch(function () {
+        // Keep the static fallback when GitHub is unavailable.
+      });
   }
 
   function fetchRelease() {
@@ -128,7 +132,9 @@
         if (!rel || !rel.tag_name) throw 0;
         handleRelease(rel);
       })
-      .catch(function () {});
+      .catch(function () {
+        // Keep download cards in their coming-soon state on API failure.
+      });
   }
 
   function handleRelease(rel) {
@@ -187,7 +193,7 @@
       if (btn) {
         btn.href = asset.browser_download_url;
         btn.classList.remove("disabled");
-        var span = btn.querySelector("span");
+        const span = btn.querySelector("span");
         if (span) span.textContent = currentLang === "vi" ? "Tải xuống" : "Download";
       }
       if (szEl) szEl.textContent = fmtSize(asset.size);

@@ -1,5 +1,5 @@
 // NekoCut i18n — EN + VI
-var I18N = {
+window.I18N = {
   en: {
     "nav.features": "Features",
     "nav.faq": "FAQ",
