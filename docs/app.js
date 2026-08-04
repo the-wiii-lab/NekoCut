@@ -214,11 +214,21 @@
       });
     }
 
-    // --- Hero image floating loop ---
-    gsap.to(".hero-shot", {
-      y: -12, duration: 2.5, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.5
-    });
-  }
+      // --- Hero image floating loop ---
+      gsap.to(".hero-shot", {
+        y: -12, duration: 2.5, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.5
+      });
+
+      // --- Refresh ScrollTrigger after setup + after images load ---
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+        window.addEventListener("load", function () {
+          ScrollTrigger.refresh();
+        });
+        // Safety: refresh once more after 2s (covers slow image loads)
+        setTimeout(function () { ScrollTrigger.refresh(); }, 2000);
+      }
+    }
 
   // ===== INIT =====
   function init() {
