@@ -1,5 +1,5 @@
 // NekoCut i18n — EN/VI translations
-const I18N = {
+window.I18N = {
   en: {
     "nav.features": "Features",
     "nav.faq": "FAQ",

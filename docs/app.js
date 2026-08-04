@@ -2,6 +2,11 @@
 (function () {
   "use strict";
 
+  // These libraries are loaded by script tags in docs/index.html.
+  var I18N = window.I18N;
+  var gsap = window.gsap;
+  var ScrollTrigger = window.ScrollTrigger;
+
   // ===== LANGUAGE =====
   var saved = localStorage.getItem("nekocut-lang");
   var browser = (navigator.language || "en").startsWith("vi") ? "vi" : "en";
@@ -35,7 +40,7 @@
     if (toggle) toggle.textContent = lang === "en" ? "VI" : "EN";
     splitHeroWords();
     if (!releaseVersion) {
-      var fallback = lang === "vi" ? "sắp ra mắt" : "coming soon";
+      const fallback = lang === "vi" ? "sắp ra mắt" : "coming soon";
       document.querySelectorAll("[data-release-ver]").forEach(function (el) {
         el.textContent = fallback;
       });
@@ -63,7 +68,9 @@
           el.textContent = fmtCount(c);
         });
       })
-      .catch(function () {});
+      .catch(function () {
+        // Star count is optional; keep the static fallback when GitHub is unavailable.
+      });
   }
 
   function detectOS() {
@@ -98,7 +105,7 @@
           if (a) {
             btn.href = a.browser_download_url;
             btn.classList.remove("disabled");
-            var span = btn.querySelector("span");
+            const span = btn.querySelector("span");
             if (span) span.textContent = "Download";
           }
         });

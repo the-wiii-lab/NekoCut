@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 480" role="img" aria-labelledby="title desc">
+  <title id="title">NekoCut wordmark</title>
+  <desc id="desc">The NekoCut app mark paired with the NekoCut name.</desc>
+  <g transform="translate(24 24) scale(.421875)">
+    <rect width="1024" height="1024" rx="224" fill="#2563EB"/>
+    <defs>
+      <mask id="nekocut-wordmark-symbol">
+        <rect width="1024" height="1024" fill="#000"/>
+        <path fill="#fff" d="M260 220c-7-5-12-1-12 12v388c0 127 107 200 264 200s264-73 264-200V232c0-13-5-17-12-12L626 354c-17 18-42 26-69 26h-90c-27 0-52-8-69-26L260 220Z"/>
+        <path fill="#000" d="M205 704 792 383l28 52-587 321z"/>
+        <path fill="#000" d="m470 442 82 48-82 48z"/>
+      </mask>
+    </defs>
+    <rect width="1024" height="1024" fill="#fff" mask="url(#nekocut-wordmark-symbol)"/>
+  </g>
+  <text x="520" y="322" fill="#111827" font-family="Inter, SF Pro Display, Segoe UI, Arial, sans-serif" font-size="218" font-weight="720" letter-spacing="-9">NekoCut</text>
+</svg>
