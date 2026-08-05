@@ -17,7 +17,36 @@ jobs:
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check WinGet publishing prerequisites
+        id: prerequisites
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WINGET_TOKEN: ${{ secrets.WINGET_ACC_TOKEN }}
+        run: |
+          $packagePath = "repos/microsoft/winget-pkgs/contents/manifests/t/TheWiiiLab/NekoCut"
+          $tokenConfigured = -not [string]::IsNullOrWhiteSpace($env:WINGET_TOKEN)
+
+          gh api $packagePath --silent 2>$null
+          $packageExists = $LASTEXITCODE -eq 0
+          $ready = $tokenConfigured -and $packageExists
+
+          "ready=$($ready.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
+          if (-not $tokenConfigured) {
+            Write-Warning "WINGET_ACC_TOKEN is not configured. Skipping WinGet publication."
+          }
+
+          if (-not $packageExists) {
+            Write-Warning "TheWiiiLab.NekoCut is not registered in winget-pkgs yet. Submit the initial manifest before enabling automatic updates."
+          }
+
+          if (-not $ready) {
+            "### WinGet publication skipped" >> $env:GITHUB_STEP_SUMMARY
+            "Automatic updates require an existing TheWiiiLab.NekoCut manifest and the WINGET_ACC_TOKEN repository secret." >> $env:GITHUB_STEP_SUMMARY
+          }
       - uses: vedantmgoyal9/winget-releaser@v2
+        if: steps.prerequisites.outputs.ready == 'true'
         with:
           identifier: TheWiiiLab.NekoCut
           installers-regex: 'windows\-x64\.exe$'
