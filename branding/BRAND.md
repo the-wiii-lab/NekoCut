@@ -9,7 +9,7 @@ NekoCut turns raw screen capture into polished motion. Its mark fuses a cat silh
 - `source-assets/NekoCut.svg` — primary square mark and source of truth for exported app icons.
 - `source-assets/NekoCut-wordmark.svg` — horizontal logo lockup.
 - `source-assets/TheWiiiLab.svg` — parent-organization mark.
-- `nekocut-readme-hero.png` — repository and documentation hero.
+- `nekocut-readme-hero.png` — canonical 8:3 repository hero with transparent rounded corners.
 - `nekocut-social-preview.png` — 2:1 Open Graph and GitHub social-preview image.
 
 ## Palette
