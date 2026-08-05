@@ -45,6 +45,8 @@ jobs:
             "### WinGet publication skipped" >> $env:GITHUB_STEP_SUMMARY
             "Automatic updates require an existing TheWiiiLab.NekoCut manifest and the WINGET_ACC_TOKEN repository secret." >> $env:GITHUB_STEP_SUMMARY
           }
+
+          exit 0
       - uses: vedantmgoyal9/winget-releaser@v2
         if: steps.prerequisites.outputs.ready == 'true'
         with:
