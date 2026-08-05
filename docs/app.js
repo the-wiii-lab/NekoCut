@@ -197,8 +197,8 @@
         if (span) span.textContent = currentLang === "vi" ? "Tải xuống" : "Download";
       }
       if (szEl) szEl.textContent = fmtSize(asset.size);
+      if (archEl && arch) archEl.textContent = arch;
     }
-    if (archEl && arch) archEl.textContent = arch;
   }
 
   // Highlight the visitor's platform (runs immediately, not dependent on release data).
