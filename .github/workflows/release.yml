@@ -629,10 +629,15 @@ jobs:
 
           if [ "$IS_PRERELEASE" != "true" ]; then
             assets+=(
-              release-assets/macos-merged/latest-mac.yml
               release-assets/windows-x64/latest*.yml
               release-assets/linux-x64/latest-linux.yml
             )
+
+            if [ "$RELEASE_SCOPE" = "all" ]; then
+              assets+=(
+                release-assets/macos-merged/latest-mac.yml
+              )
+            fi
           fi
 
           if [ ${#assets[@]} -eq 0 ]; then
