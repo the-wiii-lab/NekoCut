@@ -61,7 +61,7 @@ jobs:
             TAG_NAME="$RELEASE_TAG_NAME"
             IS_PRERELEASE="${{ github.event.release.prerelease }}"
             RELEASE_SCOPE="all"
-            if [ "$IS_PRERELEASE" = "true" ] && grep -Fq '<!-- release-scope: windows-linux -->' <<< "$RELEASE_BODY"; then
+            if grep -Fq '<!-- release-scope: windows-linux -->' <<< "$RELEASE_BODY"; then
               RELEASE_SCOPE="windows-linux"
             fi
           else
@@ -90,11 +90,6 @@ jobs:
               exit 1
               ;;
           esac
-
-          if [ "$IS_PRERELEASE" != "true" ] && [ "$RELEASE_SCOPE" != "all" ]; then
-            echo "Partial platform scope is allowed only for prereleases."
-            exit 1
-          fi
 
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             gh release view "$TAG_NAME" --repo "${{ github.repository }}" >/dev/null 2>&1 || \
