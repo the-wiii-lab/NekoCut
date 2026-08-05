@@ -1,16 +1,17 @@
 <div align="center">
 
-<img src="./branding/nekocut-readme-hero.png" width="100%" alt="NekoCut — make beautiful screen recordings" />
+<img src="./branding/nekocut-readme-hero.png" width="100%" alt="NekoCut — free, open-source screen recorder and editor" />
 
-### Free, open-source screen recording and editing for creators
+### Make beautiful screen recordings
 
-A creator-focused screen recorder and editor with auto-zoom, silky cursor effects, dynamic webcam overlays, styled backgrounds, annotations, and a drag-and-drop timeline. Built for polished demo videos out of the box.
+A free, open-source screen recorder and editor with auto-zoom, silky cursor effects, dynamic webcam overlays, styled backgrounds, annotations, and a drag-and-drop timeline.
 
-[![Platforms](https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-111827?style=for-the-badge)](#system-requirements)
-[![License](https://img.shields.io/badge/license-AGPL%203.0-2563eb?style=for-the-badge)](LICENSE.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-22c55e?style=for-the-badge)](CONTRIBUTING.md)
+[![Latest release](https://img.shields.io/github/v/release/the-wiii-lab/NekoCut?include_prereleases&sort=semver&style=flat-square&color=2563EB&label=release)](https://github.com/the-wiii-lab/NekoCut/releases)
+[![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Windows%20%7C%20Linux-111827?style=flat-square)](#system-requirements)
+[![License](https://img.shields.io/badge/license-AGPL--3.0-2563EB?style=flat-square)](LICENSE.md)
+[![GitHub stars](https://img.shields.io/github/stars/the-wiii-lab/NekoCut?style=flat-square&color=F8FAFC&labelColor=111827)](https://github.com/the-wiii-lab/NekoCut/stargazers)
 
-[Download](#installation) · [Features](#features) · [Build from Source](#build-from-source) · [Website](https://the-wiii-lab.github.io/NekoCut/)
+[Website](https://nekocut.holilihu.online/) · [Download](#installation) · [Features](#features) · [Build from source](#build-from-source) · [Brand kit](branding/BRAND.md)
 
 </div>
 

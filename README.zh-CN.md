@@ -1,12 +1,19 @@
 语言: [EN](README.md) | 简中
 
 <p align="center">
-  <img width="100%" alt="NekoCut — make beautiful screen recordings" src="./branding/nekocut-readme-hero.png" />
+  <img width="100%" alt="NekoCut — free, open-source screen recorder and editor" src="./branding/nekocut-readme-hero.png" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-111827?style=for-the-badge" alt="macOS Windows Linux" />
-  <img src="https://img.shields.io/badge/open%20source-AGPL3.0-2563eb?style=for-the-badge" alt="AGPL 3.0 license" />
+  <a href="https://nekocut.holilihu.online/">官方网站</a> ·
+  <a href="https://github.com/the-wiii-lab/NekoCut/releases">下载</a> ·
+  <a href="./branding/BRAND.md">品牌资源</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/the-wiii-lab/NekoCut/releases"><img src="https://img.shields.io/github/v/release/the-wiii-lab/NekoCut?include_prereleases&sort=semver&style=flat-square&color=2563EB&label=release" alt="Latest release" /></a>
+  <img src="https://img.shields.io/badge/platforms-macOS%20%7C%20Windows%20%7C%20Linux-111827?style=flat-square" alt="macOS Windows Linux" />
+  <a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-AGPL--3.0-2563EB?style=flat-square" alt="AGPL 3.0 license" /></a>
 </p>
 
 ### 无需额外剪辑，也能做出精致的屏幕录制。
